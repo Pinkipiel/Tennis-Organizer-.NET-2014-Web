@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8981947d-8839-4c62-9cd9-8ce6eb32f726" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8001/DuelService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="DuelService.xsd" MetadataType="Schema" ID="4a25365c-5dda-4cc2-97f6-d88204161909" SourceId="1" SourceUrl="http://localhost:8001/DuelService?xsd=xsd0" />
+    <MetadataFile FileName="DuelService1.xsd" MetadataType="Schema" ID="2ff40dc1-b1f2-426f-9bd7-9cc1da8d30a5" SourceId="1" SourceUrl="http://localhost:8001/DuelService?xsd=xsd1" />
+    <MetadataFile FileName="DuelService.disco" MetadataType="Disco" ID="0615d62f-d7cb-4e16-ab18-523c1aaa7065" SourceId="1" SourceUrl="http://localhost:8001/DuelService?disco" />
+    <MetadataFile FileName="DuelService2.xsd" MetadataType="Schema" ID="7f5cc460-6049-463f-a902-67916a60ccb6" SourceId="1" SourceUrl="http://localhost:8001/DuelService?xsd=xsd2" />
+    <MetadataFile FileName="DuelService.wsdl" MetadataType="Wsdl" ID="4781b53b-0ce8-4d78-b395-46c34b59cb47" SourceId="1" SourceUrl="http://localhost:8001/DuelService?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

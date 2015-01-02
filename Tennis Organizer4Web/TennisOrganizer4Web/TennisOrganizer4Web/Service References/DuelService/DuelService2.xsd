@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/TennisOrganizerServices" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/TennisOrganizerServices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8001/DuelService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="Player">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Account" nillable="true" type="tns:Account" />
+      <xs:element minOccurs="0" name="AccountID" type="xs:int" />
+      <xs:element minOccurs="0" name="Age" type="xs:int" />
+      <xs:element minOccurs="0" name="AwayMatches" nillable="true" type="tns:ArrayOfDuel" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FirstName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HomeMatches" nillable="true" type="tns:ArrayOfDuel" />
+      <xs:element minOccurs="0" name="ImagePath" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Matches" nillable="true" type="tns:ArrayOfDuel" />
+      <xs:element minOccurs="0" name="PhoneNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SkillLevel" type="xs:float" />
+      <xs:element minOccurs="0" name="TopPosition" type="xs:int" />
+    </xs:sequence>
+    <xs:attribute ref="ser:Id" />
+    <xs:attribute ref="ser:Ref" />
+  </xs:complexType>
+  <xs:element name="Player" nillable="true" type="tns:Player" />
+  <xs:complexType name="Account">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccountID" type="xs:int" />
+      <xs:element minOccurs="0" name="Login" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Player" nillable="true" type="tns:Player" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Account" nillable="true" type="tns:Account" />
+  <xs:complexType name="ArrayOfDuel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Duel" nillable="true" type="tns:Duel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDuel" nillable="true" type="tns:ArrayOfDuel" />
+  <xs:complexType name="Duel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accepted" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="DateOfPlay" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DuelID" type="xs:int" />
+      <xs:element minOccurs="0" name="GuestPlayer" nillable="true" type="tns:Player" />
+      <xs:element minOccurs="0" name="GuestPlayerID" type="xs:int" />
+      <xs:element minOccurs="0" name="HomePlayer" nillable="true" type="tns:Player" />
+      <xs:element minOccurs="0" name="HomePlayerID" type="xs:int" />
+      <xs:element minOccurs="0" name="Result" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Seen" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Duel" nillable="true" type="tns:Duel" />
+</xs:schema>

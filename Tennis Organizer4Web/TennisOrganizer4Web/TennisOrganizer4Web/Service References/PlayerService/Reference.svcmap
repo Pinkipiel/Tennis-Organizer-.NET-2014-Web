@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="47660662-619d-4985-a787-edaa441e2ecc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8001/PlayerService" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PlayerService.xsd" MetadataType="Schema" ID="cdbb5ad9-3f2b-444f-a41a-c7696d85c47b" SourceId="1" SourceUrl="http://localhost:8001/PlayerService?xsd=xsd2" />
+    <MetadataFile FileName="PlayerService1.xsd" MetadataType="Schema" ID="520a2c0d-909a-4282-8fe7-49b19f7b2602" SourceId="1" SourceUrl="http://localhost:8001/PlayerService?xsd=xsd0" />
+    <MetadataFile FileName="PlayerService.wsdl" MetadataType="Wsdl" ID="6f2a6d7b-db56-43bd-a4d7-4af116bbc620" SourceId="1" SourceUrl="http://localhost:8001/PlayerService?wsdl" />
+    <MetadataFile FileName="PlayerService.disco" MetadataType="Disco" ID="3177bbfc-a4ba-4d5b-a257-507b013d7ffd" SourceId="1" SourceUrl="http://localhost:8001/PlayerService?disco" />
+    <MetadataFile FileName="PlayerService2.xsd" MetadataType="Schema" ID="1d5d2e54-0b43-4ea1-9a6a-6f0303a21dad" SourceId="1" SourceUrl="http://localhost:8001/PlayerService?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
