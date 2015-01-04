@@ -15,7 +15,7 @@ namespace TennisOrganizerServices
 			Account acc = new Account()
 			{
 				Login = login,
-				Password = password,
+				Password = Encrypter.GetSHA256Hash(password),
 				Player = player
 			};
 			//pobierz acc z aktualnym ID
@@ -28,8 +28,8 @@ namespace TennisOrganizerServices
 		public bool UpdateAccountPassword(string login, string oldPassword, string newPassword)
 		{
 			var acc = Context.Accounts.FirstOrDefault<Account>(a => a.Login == login);
-			if (acc.Password != oldPassword) return false;
-			else acc.Password = newPassword;
+			if (acc.Password != Encrypter.GetSHA256Hash(oldPassword)) return false;
+			else acc.Password = Encrypter.GetSHA256Hash(newPassword);
 			Context.SaveChanges();
 
 			return true;
@@ -47,14 +47,14 @@ namespace TennisOrganizerServices
 			var acc = (from a in Context.Accounts
 					   where a.AccountID == id
 					   select a).FirstOrDefault<Account>();
-			if (acc.Password != password) return null;
+			if (acc.Password != Encrypter.GetSHA256Hash(password)) return null;
 			return acc;
 		}
 		
 		public Account GetAccount(string login, string password)
 		{
 			var acc = Context.Accounts.FirstOrDefault<Account>(a => a.Login == login);
-			if (acc.Password != password) return null;
+			if (acc.Password != Encrypter.GetSHA256Hash(password)) return null;
 			else return acc;
 		}
 	}

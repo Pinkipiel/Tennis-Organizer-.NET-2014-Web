@@ -187,7 +187,7 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="D:\Dokumenty\github\Tennis-Organizer-.NET-2014-WCF\Tennis Organizer .NET 2014 WCF\TennisOrganizerHost\TennisOrganizerHost.csproj">
+    <ProjectReference Include="..\..\TennisOrganizerHost\TennisOrganizerHost.csproj">
       <Project>{16344847-b6a2-425a-ba1a-a4b37efbeb26}</Project>
       <Name>TennisOrganizerHost</Name>
     </ProjectReference>

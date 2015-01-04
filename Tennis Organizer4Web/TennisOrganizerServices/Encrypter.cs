@@ -2,7 +2,7 @@
 using System.Text;
 using System.Security.Cryptography;
 
-namespace Tennis_Organizer.NET_2014
+namespace TennisOrganizerServices
 {
 	// klasa służąca do hashowania danych
 	public class Encrypter

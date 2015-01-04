@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizerServiceTestA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizerUnitTests", "TennisOrganizerUnitTests\TennisOrganizerUnitTests\TennisOrganizerUnitTests.csproj", "{53F56EC9-C5B7-423F-B65B-6C7EB1A2DCD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer4Web", "TennisOrganizer4Web\TennisOrganizer4Web\TennisOrganizer4Web.csproj", "{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{53F56EC9-C5B7-423F-B65B-6C7EB1A2DCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F56EC9-C5B7-423F-B65B-6C7EB1A2DCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F56EC9-C5B7-423F-B65B-6C7EB1A2DCD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

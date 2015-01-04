@@ -223,7 +223,7 @@ namespace Tennis_Organizer.NET_2014
 			
 			using(AccountServiceClient asc = new AccountServiceClient())
 			{
-				Account = asc.CreateAccount(Player, LoginTextBox.Text, Encrypter.GetSHA256Hash(PasswordTextBox.Text));//PasswordTextBox.Text); ///
+				Account = asc.CreateAccount(Player, LoginTextBox.Text, PasswordTextBox.Text);//PasswordTextBox.Text); ///
 			}
 			this.DialogResult = System.Windows.Forms.DialogResult.OK;
 		}

@@ -577,7 +577,7 @@ namespace Tennis_Organizer.NET_2014
 			EditProfileErrorProvider.Clear();
 			String error;
 			Validator validator = new Validator();
-			string hashedPassword = Encrypter.GetSHA256Hash(OldPasswordTextBox.Text);
+			//string hashedPassword = Encrypter.GetSHA256Hash(OldPasswordTextBox.Text);
 
 			if ((error = validator.ValidatePassword(NewPasswordTextBox.Text)) != null)
 				EditProfileErrorProvider.SetError(NewPasswordTextBox, error);
@@ -587,7 +587,7 @@ namespace Tennis_Organizer.NET_2014
 			TennisOrganizerServices.Account acc;
 			using (var asc = new AccountServiceClient())
 			{
-				acc = asc.GetAccount(LoggedInPlayer.AccountID, hashedPassword);
+				acc = asc.GetAccount(LoggedInPlayer.AccountID, OldPasswordTextBox.Text);
 			}
 			if(acc == null)
 			{
@@ -598,7 +598,7 @@ namespace Tennis_Organizer.NET_2014
 			bool password;
 			using (var asc = new AccountServiceClient())
 			{
-				password = asc.UpdateAccountPassword(acc.Login, hashedPassword, Encrypter.GetSHA256Hash(NewPasswordTextBox.Text));
+				password = asc.UpdateAccountPassword(acc.Login, OldPasswordTextBox.Text, NewPasswordTextBox.Text);
 			}
 			if(password == false)
 			{

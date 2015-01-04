@@ -63,8 +63,8 @@ namespace Tennis_Organizer.NET_2014
 						return;
 					}
 					// Porównuj zahashowane hasła
-					string hashedPassword = Encrypter.GetSHA256Hash(PasswordTextBox.Text);
-					if ((acc = asc.GetAccountByLogin(LoginTextBox.Text, hashedPassword)) == null)
+					//string hashedPassword = Encrypter.GetSHA256Hash(PasswordTextBox.Text);
+					if ((acc = asc.GetAccountByLogin(LoginTextBox.Text, PasswordTextBox.Text)) == null)
 					{
 						LoginErrorProvider.SetError(PasswordTextBox, "Błędne hasło");
 						return;
