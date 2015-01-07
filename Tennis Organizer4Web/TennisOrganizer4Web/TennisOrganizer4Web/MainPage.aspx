@@ -44,16 +44,7 @@
 		</div>
 		<div id="content">
 			<asp:ObjectDataSource ID="RankingDataSource" runat="server" SelectMethod="GetPlayerStatsList" TypeName="TennisOrganizerServices.PlayerService"></asp:ObjectDataSource>
-			<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="RankingDataSource">
-				<Columns>
-					<asp:BoundField DataField="won" HeaderText="won" SortExpression="won" />
-					<asp:BoundField DataField="lost" HeaderText="lost" SortExpression="lost" />
-					<asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
-					<asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-					<asp:BoundField DataField="Age" HeaderText="Age" SortExpression="Age" />
-					<asp:BoundField DataField="TopPosition" HeaderText="TopPosition" SortExpression="TopPosition" />
-					<asp:BoundField DataField="Position" HeaderText="Position" SortExpression="Position" />
-				</Columns>
+			<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False">
 			</asp:GridView>
 		</div>
 	</form>
