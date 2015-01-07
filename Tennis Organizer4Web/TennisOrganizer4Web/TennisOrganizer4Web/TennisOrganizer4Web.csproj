@@ -70,6 +70,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LoginPage\Default.aspx" />
     <Content Include="MainPage.aspx" />
     <Content Include="Properties\DataSources\TennisOrganizerServices.Duel.datasource" />
     <Content Include="Properties\DataSources\TennisOrganizerServices.DuelHistory.datasource" />
@@ -130,6 +131,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoginPage\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="MainPage.aspx.cs">
       <DependentUpon>MainPage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -197,6 +202,7 @@
     <WCFMetadataStorage Include="Service References\DuelService\" />
     <WCFMetadataStorage Include="Service References\PlayerService\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

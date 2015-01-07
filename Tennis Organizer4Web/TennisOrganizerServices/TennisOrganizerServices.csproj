@@ -59,6 +59,7 @@
     <Compile Include="Duel.cs" />
     <Compile Include="DuelHistory.cs" />
     <Compile Include="DuelService.cs" />
+    <Compile Include="Encrypter.cs" />
     <Compile Include="IAccountService.cs" />
     <Compile Include="IDuelService.cs" />
     <Compile Include="IPlayerService.cs" />

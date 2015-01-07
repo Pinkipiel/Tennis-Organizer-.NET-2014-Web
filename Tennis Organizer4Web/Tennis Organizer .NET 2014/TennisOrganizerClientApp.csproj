@@ -86,7 +86,6 @@
     <Compile Include="AcceptNotification.Designer.cs">
       <DependentUpon>AcceptNotification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Encrypter.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
