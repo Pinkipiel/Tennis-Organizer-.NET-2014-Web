@@ -70,7 +70,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LoginPage\Default.aspx" />
+    <Content Include="assets\css\registerStyle.css" />
+    <Content Include="assets\css\reset.css" />
+    <Content Include="assets\css\style.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="assets\images\TennisBackground.jpg" />
+    <Content Include="assets\images\TennisBackground2.jpg" />
+    <Content Include="assets\js\jquery-1.11.2.min.js" />
     <Content Include="MainPage.aspx" />
     <Content Include="Properties\DataSources\TennisOrganizerServices.Duel.datasource" />
     <Content Include="Properties\DataSources\TennisOrganizerServices.DuelHistory.datasource" />
@@ -78,6 +84,10 @@
     <Content Include="Properties\DataSources\TennisOrganizerServices.PlayerStats.datasource" />
     <Content Include="Properties\DataSources\TennisOrganizerServices.Account.datasource" />
     <Content Include="packages.config" />
+    <Content Include="assets\Web.config" />
+    <None Include="assets\Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
     <None Include="Resources\TennisOrganizerLogo.png" />
     <None Include="Resources\NotifyIcon.png" />
     <None Include="Resources\ranking.png" />
@@ -125,13 +135,14 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="Register.aspx" />
     <Content Include="StyleSheet1.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoginPage\Default.aspx.cs">
+    <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -147,6 +158,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\AccountService\Reference.cs">
       <AutoGen>True</AutoGen>
