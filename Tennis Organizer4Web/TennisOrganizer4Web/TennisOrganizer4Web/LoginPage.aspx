@@ -1,11 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LoginPage.aspx.cs" Inherits="TennisOrganizer4Web.LoginPage" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	
 	<link rel="stylesheet" href="assets/css/reset.css"/>
 	<link rel="stylesheet" href="assets/css/style.css"/>
@@ -19,18 +18,16 @@
 </head>
 
 <body>
-
+	<form runat="server" method="get">
 	<div class="commercial">
-		<a class="logo" href="#">Tennis Organizer</a>
-
+		<a class="logo" href="">Tennis Organizer</a>
+			
 	</div>
 	<div class="content">
 		
 		<div class="login_box">
 			
 			<div class="center box">
-				
-				
 				<ul>
 					<li class="text">	
 						<h1>Graj z nami już teraz!</h1>
@@ -38,31 +35,41 @@
 					<li class="text">
 						Tennis Organizer w prosty sposób pozwala na aranżowanie meczy tenisowych
 					</li>
+					<% if (valid == false) { %>
 					<li>
-						<input type="text" name="login" class="input" placeholder="Login" />
+						<span style="color:red">Błędny login lub hasło</span>
+					</li>
+					<% } %>
+
+					<li>
+						<asp:TextBox runat="server" id="login" class="input" placeholder="Login" />
 					</li>
 					<li>
-						<input type="password" name="password" class="input" placeholder="Hasło"/>
+						<asp:TextBox  TextMode="Password" runat="server" id="password" class="input" placeholder="Hasło"	/>
 					</li>
 					<li>
-						<button type="submit" name="loginButton" id="loginButton">Zaloguj</button>
+						<asp:Button 
+							id="loginButton" 
+							runat="server" 
+							Text="Zaloguj"
+							OnClick="loginButton_Click"
+							 />
 					</li>
 					<li>
-						nie masz konta? <a href="../Register.aspx">zarejestruj się</a>
+						nie masz konta? <a href="./Register.aspx">zarejestruj się</a>
 					</li>
 				</ul>
-				
 			</div>
-			
 		</div>
-		
 	</div>
-	
-	
 	<script>
-
 		$(document).ready(function () {
 			$(".login_box").css('height', ($(window).height() + 'px'));
+		});
+		$(window).load(function () {
+			<% if(valid == true) { %>
+			$(".login_box").hide().fadeIn(2000);
+			<% } %>
 		});
 
 		$(window).resize(function () {
@@ -70,5 +77,7 @@
 		});
 
 	</script>
-</body>
+	</form>
+	
+	</body>
 </html>

@@ -16,6 +16,7 @@ body {
     position:relative;
     margin: 0;
     min-width: 1024px;
+	min-height:768px;
     background-image: url(../images/TennisBackground2.jpg);
     background-position: center top;
     background-size:cover;
@@ -39,7 +40,7 @@ body {
 .commercial
 {
 	position:absolute;
-	top:60px;
+	top:0px;
 	font-size:15pt;
 	padding:10px;
 	margin:10px;
@@ -52,7 +53,6 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     overflow: hidden;
     height: 430px;
-    
     -webkit-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
@@ -82,7 +82,7 @@ ul li.text
 	font-size:20pt;
 	color:#444;
 }
-button
+input[type=submit]
 {
     box-sizing: border-box;
 	font-size:15px;
@@ -92,11 +92,11 @@ button
 	border:none;
 	background: #3399FF;
 }
-button:hover
+input[type=submit]:hover
 {
 	background:rgb(150, 215,255);
 }
-button:active
+input[type=submit]:active
 {
 	background:rgb(215, 235, 255);
 }
