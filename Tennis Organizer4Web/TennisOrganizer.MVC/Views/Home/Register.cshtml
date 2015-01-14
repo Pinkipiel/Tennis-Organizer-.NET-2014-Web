@@ -1,0 +1,52 @@
+﻿@model TennisOrganizer.MVC.Models.RegistrationViewModel
+
+@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm()) { 
+<ul>
+	<li>
+		@Html.LabelFor(model => model.Account.Login)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Account.Login)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Account.Password)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Account.Password)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.FirstName)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.FirstName)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.LastName)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.LastName)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.Age)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.Age)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.Email)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.Email)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.City)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.City)
+	</li>
+</ul>
+	<input type="submit" value="Załóż konto" />
+}

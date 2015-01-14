@@ -5,13 +5,11 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizerClientApp", "Tennis Organizer .NET 2014\TennisOrganizerClientApp.csproj", "{FBA030F2-A178-429C-BB35-400C7E13918A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizerServiceTestApp", "TennisOrganizerServiceTestApp\TennisOrganizerServiceTestApp.csproj", "{74A47627-B188-43AF-8F54-50343E850003}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer4Web", "TennisOrganizer4Web\TennisOrganizer4Web\TennisOrganizer4Web.csproj", "{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer.MVC", "TennisOrganizer.MVC\TennisOrganizer.MVC.csproj", "{B0013ACE-F0A7-4523-AFD6-279EBE3074CD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer.MVC", "TennisOrganizer.MVC\TennisOrganizer.MVC.csproj", "{8B4507F2-B46F-4318-94FE-1D7BE42F5535}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer.MVC.Tests", "TennisOrganizer.MVC.Tests\TennisOrganizer.MVC.Tests.csproj", "{8BCC6CB2-6948-4DF2-B727-5EEE6AA8744F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer.MVC.Tests", "TennisOrganizer.MVC.Tests\TennisOrganizer.MVC.Tests.csproj", "{6322AF8B-CFF4-4C48-8A06-E87C9F96982F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,22 +21,18 @@ Global
 		{FBA030F2-A178-429C-BB35-400C7E13918A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBA030F2-A178-429C-BB35-400C7E13918A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FBA030F2-A178-429C-BB35-400C7E13918A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74A47627-B188-43AF-8F54-50343E850003}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74A47627-B188-43AF-8F54-50343E850003}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74A47627-B188-43AF-8F54-50343E850003}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74A47627-B188-43AF-8F54-50343E850003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0013ACE-F0A7-4523-AFD6-279EBE3074CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0013ACE-F0A7-4523-AFD6-279EBE3074CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0013ACE-F0A7-4523-AFD6-279EBE3074CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0013ACE-F0A7-4523-AFD6-279EBE3074CD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8BCC6CB2-6948-4DF2-B727-5EEE6AA8744F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8BCC6CB2-6948-4DF2-B727-5EEE6AA8744F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8BCC6CB2-6948-4DF2-B727-5EEE6AA8744F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8BCC6CB2-6948-4DF2-B727-5EEE6AA8744F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4507F2-B46F-4318-94FE-1D7BE42F5535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4507F2-B46F-4318-94FE-1D7BE42F5535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4507F2-B46F-4318-94FE-1D7BE42F5535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4507F2-B46F-4318-94FE-1D7BE42F5535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6322AF8B-CFF4-4C48-8A06-E87C9F96982F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6322AF8B-CFF4-4C48-8A06-E87C9F96982F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6322AF8B-CFF4-4C48-8A06-E87C9F96982F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6322AF8B-CFF4-4C48-8A06-E87C9F96982F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

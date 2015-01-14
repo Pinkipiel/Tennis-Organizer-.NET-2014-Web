@@ -11,7 +11,7 @@ input:-moz-placeholder { color:#999; }
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    color: #CCC;
+    color: #000;
     background-color: #222;
     position:relative;
     margin: 0;
@@ -23,8 +23,7 @@ body {
 }
 
 .center{
-    top: 0;
-    bottom: 0;
+    top: 150px;
     left: 0;
     right: 0;
     margin: auto;
@@ -52,7 +51,6 @@ body {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     overflow: hidden;
-    height: 430px;
     -webkit-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);

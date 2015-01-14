@@ -13,23 +13,23 @@ namespace TennisOrganizer.MVC.Models
 		[Key]
 		public int DuelId { get; set; }
 
-		[Display(Name="Data")]
+		[Display(Name = "Data")]
 		public DateTime DateOfPlay { get; set; }
 
 		public bool? Accepted { get; set; }
 
 		public bool Seen { get; set; }
 
-		[Display(Name="Wynik")]
+		[Display(Name = "Wynik")]
 		public String Result { get; set; }
 
 		public int HomePlayerId { get; set; }
 
 		public int GuestPlayerId { get; set; }
 
-		public Player HomePlayer { get; set; }
+		public virtual Player HomePlayer { get; set; }
 
-		public Player GuestPlayer { get; set; }
+		public virtual Player GuestPlayer { get; set; }
 
 		public Duel(Player _homePlayer, Player _guestPlayer)
 		{

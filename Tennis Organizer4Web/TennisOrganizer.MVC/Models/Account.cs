@@ -14,12 +14,12 @@ namespace TennisOrganizer.MVC.Models
 		public int AccountId { get; set; }
 
 		[Required]
-		[Display(Name="Użytkownik")]
-		public String  Login { get; set; }
+		[Display(Name = "Użytkownik")]
+		public String Login { get; set; }
 
 		[Required]
 		[MinLength(3)]
-		[Display(Name="Hasło")]
+		[Display(Name = "Hasło")]
 		[DataType(DataType.Password)]
 		public String Password { get; set; }
 
