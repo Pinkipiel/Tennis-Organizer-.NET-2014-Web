@@ -3,7 +3,7 @@
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm()) { 
+@using (Html.BeginForm("Register", "Home", FormMethod.Post)) { 
 <ul>
 	<li>
 		@Html.LabelFor(model => model.Account.Login)
@@ -46,6 +46,12 @@
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.City)
+	</li>
+	<li>
+		@Html.LabelFor(model => model.Player.SkillLevel)
+	</li>
+	<li>
+		@Html.TextBoxFor(model => model.Player.SkillLevel)
 	</li>
 </ul>
 	<input type="submit" value="Załóż konto" />

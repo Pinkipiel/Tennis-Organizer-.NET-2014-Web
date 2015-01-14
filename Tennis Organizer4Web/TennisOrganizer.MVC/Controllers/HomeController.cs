@@ -20,5 +20,27 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			return View();
 		}
+
+		[HttpPost]
+		public ActionResult Register(RegistrationViewModel rvm)
+		{
+			if (ModelState.IsValid)
+			{
+				using(var db = new TennisOrganizerContext())
+				{
+					Account acc = rvm.Account;
+					Player p = rvm.Player;
+					acc.Player = p;
+					db.Accounts.Add(acc);
+					db.Players.Add(p);
+					db.SaveChanges();
+				}
+				return RedirectToAction("Index");
+			}
+			else
+			{
+				return View(rvm);
+			}
+		}
     }
 }
