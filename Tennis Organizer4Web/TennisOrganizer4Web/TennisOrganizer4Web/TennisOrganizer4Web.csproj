@@ -213,12 +213,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\TennisOrganizerHost\TennisOrganizerHost.csproj">
-      <Project>{16344847-b6a2-425a-ba1a-a4b37efbeb26}</Project>
-      <Name>TennisOrganizerHost</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Service References\AccountService\" />
     <WCFMetadataStorage Include="Service References\DuelService\" />
     <WCFMetadataStorage Include="Service References\PlayerService\" />

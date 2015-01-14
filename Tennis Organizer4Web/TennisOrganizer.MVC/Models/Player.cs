@@ -8,7 +8,7 @@ using System.Text;
 namespace TennisOrganizer.MVC.Models
 {
 	[Table("Gracze")]
-	class Player
+	public class Player
 	{
 		[Display(Name="Numer Gracza")]
 		[Key, ForeignKey("Account")]

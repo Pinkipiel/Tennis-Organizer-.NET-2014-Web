@@ -8,7 +8,7 @@ using System.Text;
 namespace TennisOrganizer.MVC.Models
 {
 	[Table("Pojedynki")]
-	class Duel
+	public class Duel
 	{
 		[Key]
 		public int DuelId { get; set; }
