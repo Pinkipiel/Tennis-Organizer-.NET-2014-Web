@@ -3,56 +3,75 @@
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@using (Html.BeginForm("Register", "Home", FormMethod.Post)) { 
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "RegisterForm" }))
+{ 
 <ul>
 	<li>
 		@Html.LabelFor(model => model.Account.Login)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Account.Login)
+		@Html.ValidationMessageFor(model => model.Account.Login)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Account.Password)
 	</li>
 	<li>
-		@Html.TextBoxFor(model => model.Account.Password)
+		@Html.EditorFor(model => model.Account.Password)
+		@Html.ValidationMessageFor(model => model.Account.Password)
+	</li>
+	<li>
+	<li>
+		@Html.LabelFor(model => model.RepeatedPassword)
+	</li>
+	<li>
+		@Html.EditorFor(model => model.RepeatedPassword)
+		@Html.ValidationMessageFor(model => model.RepeatedPassword)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.FirstName)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.FirstName)
+		@Html.ValidationMessageFor(model => model.Player.FirstName)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.LastName)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.LastName)
+		@Html.ValidationMessageFor(model => model.Player.LastName)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.Age)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.Age)
+		@Html.ValidationMessageFor(model => model.Player.Age)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.Email)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.Email)
+		@Html.ValidationMessageFor(model => model.Player.Email)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.City)
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.City)
+		@Html.ValidationMessageFor(model => model.Player.City)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.SkillLevel)
+	</li>	
+	<li>
+		@Html.TextBoxFor(model => model.Player.SkillLevel, new { @Value = "0"})
 	</li>
 	<li>
-		@Html.TextBoxFor(model => model.Player.SkillLevel)
+		<button type="submit" value="Załóż konto" />
 	</li>
 </ul>
-	<input type="submit" value="Załóż konto" />
 }
+

@@ -14,15 +14,15 @@ namespace TennisOrganizer.MVC.Models
 		[Key, ForeignKey("Account")]
 		public int AccountId { get; set; }
 
-		[Required]
-		[Display(Name = "Imie")]
+		[Required(ErrorMessage="Pole Wymagane")]
+		[Display(Name = "Imię")]
 		public String FirstName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Pole Wymagane")]
 		[Display(Name = "Nazwisko")]
 		public String LastName { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Pole Wymagane")]
 		[Range(0, 200)]
 		[Display(Name = "Wiek")]
 		public int Age { get; set; }
@@ -31,15 +31,17 @@ namespace TennisOrganizer.MVC.Models
 		[DataType(DataType.PhoneNumber)]
 		public String PhoneNumber { get; set; }
 
+		[Required(ErrorMessage = "Pole Wymagane")]
 		[DataType(DataType.EmailAddress)]
 		public String Email { get; set; }
 
 		[Display(Name="Poziom umiejętności")]
-		[Range(1.0f, 7.0f)]
+		[Required(AllowEmptyStrings=true)]
 		public float SkillLevel { get; set; }
 
 		public String ImagePath { get; set; }
 		
+		[Required(ErrorMessage="Pole Wymagane")]
 		[Display(Name="Miejscowość")]
 		public String City { get; set; }
 

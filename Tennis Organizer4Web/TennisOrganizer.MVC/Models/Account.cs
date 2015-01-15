@@ -13,11 +13,11 @@ namespace TennisOrganizer.MVC.Models
 		[Key]
 		public int AccountId { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Wymagana nazwa użytkownika")]
 		[Display(Name = "Użytkownik")]
 		public String Login { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Wprowadź swoje hasło")]
 		[MinLength(3)]
 		[Display(Name = "Hasło")]
 		[DataType(DataType.Password)]

@@ -80,7 +80,11 @@ ul li.text
 	font-size:20pt;
 	color:#444;
 }
-input[type=submit]
+input[type=text], input[type=password]
+{
+	width:50%;
+}
+input[type=submit], button[type=submit]
 {
     box-sizing: border-box;
 	font-size:15px;
@@ -90,11 +94,11 @@ input[type=submit]
 	border:none;
 	background: #3399FF;
 }
-input[type=submit]:hover
+input[type=submit]:hover, button[type=submit]:hover
 {
 	background:rgb(150, 215,255);
 }
-input[type=submit]:active
+input[type=submit]:active, button[type=submit]:hover
 {
 	background:rgb(215, 235, 255);
 }

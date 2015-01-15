@@ -39,7 +39,9 @@ namespace TennisOrganizer.MVC.Controllers
 			}
 			else
 			{
-				return View(rvm);
+				return RedirectToAction("Index");
+
+				//return View(rvm);
 			}
 		}
     }
