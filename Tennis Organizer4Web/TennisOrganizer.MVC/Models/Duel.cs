@@ -31,6 +31,8 @@ namespace TennisOrganizer.MVC.Models
 
 		public virtual Player GuestPlayer { get; set; }
 
+
+		public Duel() { }
 		public Duel(Player _homePlayer, Player _guestPlayer)
 		{
 			HomePlayer = _homePlayer;

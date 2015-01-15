@@ -3,22 +3,32 @@
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+	input[type=text], input[type=password] {
+		width: 50%;
+	}
+</style>
 @using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "RegisterForm" }))
 { 
 <ul>
 	<li>
-		@Html.LabelFor(model => model.Account.Login)
+		@Html.LabelFor(model => model.Login)
 	</li>
 	<li>
-		@Html.TextBoxFor(model => model.Account.Login)
-		@Html.ValidationMessageFor(model => model.Account.Login)
+		@Html.TextBoxFor(model => model.Login)
+		@Html.ValidationMessageFor(model => model.Login)
+		@if (ViewData["LoginAvailability"] != null && (bool)ViewData["LoginAvailability"] == false)
+		{
+			@Html.Label("Podany login jest zajęty", new { @class = "errorLabel"})
+		}
+	  
+  	</li>
+	<li>
+		@Html.LabelFor(model => model.Password)
 	</li>
 	<li>
-		@Html.LabelFor(model => model.Account.Password)
-	</li>
-	<li>
-		@Html.EditorFor(model => model.Account.Password)
-		@Html.ValidationMessageFor(model => model.Account.Password)
+		@Html.EditorFor(model => model.Password)
+		@Html.ValidationMessageFor(model => model.Password)
 	</li>
 	<li>
 	<li>
@@ -70,7 +80,7 @@
 		@Html.TextBoxFor(model => model.Player.SkillLevel, new { @Value = "0"})
 	</li>
 	<li>
-		<button type="submit" value="Załóż konto" />
+		<button type="submit" value="Załóż konto">Załóż konto</button>
 	</li>
 </ul>
 }

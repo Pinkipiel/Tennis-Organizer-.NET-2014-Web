@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +143,14 @@
     <Compile Include="Migrations\201501142135513_HomeAwayPlayerFix.cs" />
     <Compile Include="Migrations\201501142135513_HomeAwayPlayerFix.Designer.cs">
       <DependentUpon>201501142135513_HomeAwayPlayerFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501151635422_AddPostAbstract.cs" />
+    <Compile Include="Migrations\201501151635422_AddPostAbstract.Designer.cs">
+      <DependentUpon>201501151635422_AddPostAbstract.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501151909271_DataAnnotations-PaswordLength.cs" />
+    <Compile Include="Migrations\201501151909271_DataAnnotations-PaswordLength.Designer.cs">
+      <DependentUpon>201501151909271_DataAnnotations-PaswordLength.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
@@ -216,6 +225,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\RegisterSuccess.cshtml" />
+    <Content Include="Views\Main\MainTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -229,6 +240,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501142135513_HomeAwayPlayerFix.resx">
       <DependentUpon>201501142135513_HomeAwayPlayerFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501151635422_AddPostAbstract.resx">
+      <DependentUpon>201501151635422_AddPostAbstract.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501151909271_DataAnnotations-PaswordLength.resx">
+      <DependentUpon>201501151909271_DataAnnotations-PaswordLength.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

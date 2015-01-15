@@ -1,7 +1,11 @@
-﻿@{
+﻿@model TennisOrganizer.MVC.Models.Account
+
+@{
 	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
 <ul>
 	<li class="text">
 		<h1>Graj z nami już teraz!</h1>
@@ -10,20 +14,23 @@
 		Tennis Organizer w prosty sposób pozwala na aranżowanie meczy tenisowych
 	</li>
 	<li>
-		<input type="text" id="login" class="input" placeholder="Login" />
+		@Html.TextBoxFor(a => Model.Login)
 	</li>
 	<li>
-		<input type="password" id="password" class="input" placeholder="Hasło" />
+		@Html.EditorFor(a => Model.Password)
+		@if (ViewData["PasswordIncorrect"] != null && (bool)ViewData["PasswordIncorrect"] == true)
+		{
+			@Html.Label("Złe hasło", new { @class = "errorLabel" })
+		}
 	</li>
 	<li>
-		<input type="submit" class="button" value="Wyślij"/>
-
+		<button type="submit" value="Załóż konto">Zaloguj</button>
 	</li>
 	<li>
 		nie masz konta? @Html.ActionLink("Zarejestruj się!", "Register")
 	</li>
 </ul>
-				
+	
 <script>
 	$(document).ready(function () {
 		$(".login_box").css('height', ($(window).height() + 'px'));
@@ -35,3 +42,4 @@
 	});
 
 </script>
+}

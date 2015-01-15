@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "RegisterSuccess";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+	String login = "";
+}
+
+<h2>Rejestracja zakończona pomyślnie!</h2>
+@if (ViewData["RegisteredLogin"] != null)
+{
+	login = ViewData["RegisteredLogin"].ToString();
+}
+@login, zaloguj się, używając danych użytych przy rejestracji.
+<br />
+@Html.ActionLink("Powrót na stronę główną", "Index");
