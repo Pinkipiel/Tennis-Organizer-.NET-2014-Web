@@ -1,0 +1,22 @@
+﻿@model IEnumerable<TennisOrganizer.MVC.Models.Account>
+
+@{
+    ViewBag.Title = "Ranking";
+}
+
+<h2>Ranking</h2>
+
+
+<table>
+	<tr>
+		<th>Login</th>
+		<th>Password</th>
+	</tr>
+	@foreach (var account in Model)
+	{
+		<tr>
+			<td>@account.Login</td>
+			<td>@account.Password</td>
+		</tr>
+	}
+</table>

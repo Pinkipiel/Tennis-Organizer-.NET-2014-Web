@@ -158,9 +158,11 @@
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
     <Compile Include="Models\TennisOrganizerContext.cs" />
+    <Compile Include="Models\TennisOrganizerInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\mainPage.css" />
     <Content Include="Content\themes\base\images\TennisBackground.jpg" />
     <Content Include="Content\themes\base\images\TennisBackground2.jpg" />
     <Content Include="Content\themes\base\images\TennisBackground2_1.jpg" />
@@ -227,6 +229,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Home\RegisterSuccess.cshtml" />
     <Content Include="Views\Main\MainTest.cshtml" />
+    <Content Include="Views\Main\Ranking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
