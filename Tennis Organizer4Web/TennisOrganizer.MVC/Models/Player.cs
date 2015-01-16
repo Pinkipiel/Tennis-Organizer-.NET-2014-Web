@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using TennisOrganizer.MVC.ViewModels;
 
 namespace TennisOrganizer.MVC.Models
 {
@@ -60,6 +61,55 @@ namespace TennisOrganizer.MVC.Models
 		}
 
 		public virtual Account Account { get; set; }
+
+		public int GetWonMatchesCount(Player player)
+		{
+			int wins = 0;
+
+			foreach (Duel d in player.Matches)
+			{
+				if (d.Result == null || d.Result.Length == 0) continue;
+				if (player.AccountId == d.HomePlayerId)
+				{
+					if (d.Result[0] > d.Result[2]) wins++;
+				}
+				else if (player.AccountId == d.GuestPlayerId)
+				{
+					if (d.Result[2] > d.Result[0]) wins++;
+				}
+			}
+			return wins;
+		}
+		public int GetLostMatchesCount(Player player)
+		{
+			int loses = 0;
+			//db.Players.Attach(this);
+			foreach (Duel d in player.Matches)
+			{
+				if (d.Result == null || d.Result.Length == 0) continue;
+				if (player.AccountId == d.HomePlayerId)
+				{
+					if (d.Result[0] < d.Result[2]) loses++;
+				}
+				else if (player.AccountId == d.GuestPlayerId)
+				{
+					if (d.Result[2] < d.Result[0]) loses++;
+				}
+			}
+			return loses;
+		}
+		public static List<PlayerStats> GetPlayersStats()
+		{
+			using (var db = new TennisOrganizerContext())
+			{
+				var players = db.Players.ToList();
+				List<PlayerStats> stats = new List<PlayerStats>();
+
+				foreach (var p in players)
+					stats.Add(new PlayerStats(p));
+				return stats;
+			}
+		}
 
 		public override string ToString()
 		{

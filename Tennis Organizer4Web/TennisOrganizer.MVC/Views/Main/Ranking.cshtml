@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TennisOrganizer.MVC.Models.Account>
+﻿@model IEnumerable<TennisOrganizer.MVC.ViewModels.PlayerStats>
 
 @{
     ViewBag.Title = "Ranking";
@@ -9,14 +9,24 @@
 
 <table>
 	<tr>
-		<th>Login</th>
-		<th>Password</th>
+		<th>POZYCJA</th>
+		<th>IMIĘ</th>
+		<th>NAZWISKO</th>
+		<th>WIEK</th>
+		<th>WYGRANE</th>
+		<th>PRZEGRANE</th>
+		<th>NAJWYŻSZA POZYCJA</th>
 	</tr>
-	@foreach (var account in Model)
+	@foreach (var stat in Model)
 	{
 		<tr>
-			<td>@account.Login</td>
-			<td>@account.Password</td>
+			<td>@stat.Position</td>
+			<td>@stat.FirstName</td>
+			<td>@stat.LastName</td>
+			<td>@stat.Age</td>
+			<td>@stat.won</td>
+			<td>@stat.lost</td>
+			<td>@stat.TopPosition</td>
 		</tr>
 	}
 </table>

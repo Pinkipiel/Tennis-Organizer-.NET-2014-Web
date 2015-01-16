@@ -19,8 +19,8 @@ namespace TennisOrganizer.MVC.Controllers
 
 		public ActionResult Ranking()
 		{
-			var data = ctx.Accounts.ToList();
-			return View(data);
+			var stats = Player.GetPlayersStats();
+			return View(stats);
 		}
 
     }

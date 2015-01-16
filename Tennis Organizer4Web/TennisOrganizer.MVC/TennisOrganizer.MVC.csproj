@@ -160,6 +160,7 @@
     <Compile Include="Models\TennisOrganizerContext.cs" />
     <Compile Include="Models\TennisOrganizerInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\PlayerStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\mainPage.css" />
