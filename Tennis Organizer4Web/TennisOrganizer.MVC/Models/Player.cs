@@ -62,41 +62,67 @@ namespace TennisOrganizer.MVC.Models
 
 		public virtual Account Account { get; set; }
 
-		public int GetWonMatchesCount(Player player)
+		public Player()
+		{
+			HomeMatches = new HashSet<Duel>();
+			AwayMatches = new HashSet<Duel>();
+		}
+		public int GetWonMatchesCount()
 		{
 			int wins = 0;
 
-			foreach (Duel d in player.Matches)
+			foreach (Duel d in Matches)
 			{
 				if (d.Result == null || d.Result.Length == 0) continue;
-				if (player.AccountId == d.HomePlayerId)
+				if (AccountId == d.HomePlayerId)
 				{
 					if (d.Result[0] > d.Result[2]) wins++;
 				}
-				else if (player.AccountId == d.GuestPlayerId)
+				else if (AccountId == d.GuestPlayerId)
 				{
 					if (d.Result[2] > d.Result[0]) wins++;
 				}
 			}
 			return wins;
 		}
-		public int GetLostMatchesCount(Player player)
+		public int GetLostMatchesCount()
 		{
 			int loses = 0;
-			//db.Players.Attach(this);
-			foreach (Duel d in player.Matches)
+			
+			foreach (Duel d in Matches)
 			{
 				if (d.Result == null || d.Result.Length == 0) continue;
-				if (player.AccountId == d.HomePlayerId)
+				if (AccountId == d.HomePlayerId)
 				{
 					if (d.Result[0] < d.Result[2]) loses++;
 				}
-				else if (player.AccountId == d.GuestPlayerId)
+				else if (AccountId == d.GuestPlayerId)
 				{
 					if (d.Result[2] < d.Result[0]) loses++;
 				}
 			}
 			return loses;
+		}
+		public int GetRank()
+		{
+			int rank = 1;
+			using (var db = new TennisOrganizerContext())
+			{
+				var ranking = (from p in db.Players
+							   orderby p.SkillLevel descending
+							   where p.AccountId != AccountId //&& !(p is Trainer)
+							   select p);
+				foreach (Player p in ranking)
+				{
+					if (p.GetWonMatchesCount() - p.GetLostMatchesCount() >= GetWonMatchesCount() - GetLostMatchesCount())
+						rank++;
+				}
+				if (rank < TopPosition && rank != 0)
+				{
+					TopPosition = rank;
+				}
+			}
+			return rank;
 		}
 		public static List<PlayerStats> GetPlayersStats()
 		{
