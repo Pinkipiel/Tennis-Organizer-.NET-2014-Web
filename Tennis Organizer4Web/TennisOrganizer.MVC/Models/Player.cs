@@ -48,9 +48,9 @@ namespace TennisOrganizer.MVC.Models
 
 		public int TopPosition { get; set; }
 
-		public virtual IEnumerable<Duel> HomeMatches { get; set; }
+		public virtual ICollection<Duel> HomeMatches { get; set; }
 
-		public virtual IEnumerable<Duel> AwayMatches { get; set; }
+		public virtual ICollection<Duel> AwayMatches { get; set; }
 
 		public IEnumerable<Duel> Matches
 		{

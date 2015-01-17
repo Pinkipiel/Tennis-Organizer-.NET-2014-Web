@@ -152,6 +152,10 @@
     <Compile Include="Migrations\201501151909271_DataAnnotations-PaswordLength.Designer.cs">
       <DependentUpon>201501151909271_DataAnnotations-PaswordLength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501170030323_DwaDoWielu.cs" />
+    <Compile Include="Migrations\201501170030323_DwaDoWielu.Designer.cs">
+      <DependentUpon>201501170030323_DwaDoWielu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Duel.cs" />
@@ -250,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501151909271_DataAnnotations-PaswordLength.resx">
       <DependentUpon>201501151909271_DataAnnotations-PaswordLength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501170030323_DwaDoWielu.resx">
+      <DependentUpon>201501170030323_DwaDoWielu.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
