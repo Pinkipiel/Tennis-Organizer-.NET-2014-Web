@@ -1,0 +1,13 @@
+﻿@{
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Błąd 404";
+}
+
+<hgroup>
+	<h1>Błąd.</h1>
+	<h2>Wystąpił błąd 404: Podana strona nie została odnaleziona.</h2>
+	@if (ViewData["ErrorPath"] != null)
+	{
+		<h3>Strona: @ViewData["ErrorPath"] nie istnieje w tym serwisie.</h3>
+	}
+</hgroup>

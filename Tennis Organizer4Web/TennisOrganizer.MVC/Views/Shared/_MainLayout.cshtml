@@ -22,52 +22,19 @@
 	</header>
 	<div class="main-container">
 		<div id="top-panel">
-			<a id="top-panel-button" href=".">
-				Profil
-			</a>
-			<a id="top-panel-button" href=".">
-				Wyzwanie
-			</a>
-			<a id="top-panel-button" href=".">
-				Trening
-			</a>
-			<a id="top-panel-button" href=".">
-				Ranking
-			</a>
+			@Html.ActionLink("Profil", "MainTest", "Main", null, new { @id = "top-panel-button" })
+			@Html.ActionLink("Wyzwanie", "Challenge", "Main", null,  new  { @id = "top-panel-button"})
+			@Html.ActionLink("Trening", "Training", "Main", null, new  { @id = "top-panel-button" })
+			@Html.ActionLink("Ranking", "Ranking", "Main", null, new { @id = "top-panel-button" })
+			@Html.ActionLink("Wyloguj", "LogOff", "Main", null, new { @id = "top-panel-button" })
 		</div>
 		<div id="left-menu">
-			<ul>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-			</ul>
+			menu 
 		</div>
 		<div class="content">
-			<ul>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-				<li>
-					test
-				</li>
-			</ul>
-			@RenderBody();
+			@RenderBody()
 		</div>
+
 	</div>
 	<div id="authors">
 		Tennis Organizer by Kacper Sarnacki and Piotr Wcisło

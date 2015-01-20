@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TennisOrganizer.MVC.Models;
 
 namespace TennisOrganizer.MVC.Controllers
@@ -12,8 +13,11 @@ namespace TennisOrganizer.MVC.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+		public ActionResult Index(string returnUrl)
         {
+			if (Request.IsAuthenticated)
+				return RedirectToAction("MainTest", "Main");
+			ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 		public ViewResult Register()
@@ -27,7 +31,7 @@ namespace TennisOrganizer.MVC.Controllers
 			return View();
 		}
 		[HttpPost]
-		public ActionResult Index(Account acc)
+		public ActionResult Index(Account acc, string ReturnUrl)
 		{
 			using (var db =  new TennisOrganizerContext())
 			{
@@ -42,7 +46,13 @@ namespace TennisOrganizer.MVC.Controllers
 					ViewData.Add("PasswordIncorrect", (bool)true);
 					return View(acc);
 				}
-				else return RedirectToAction("MainTest", "Main");
+				else
+				{
+				//	Session["User"] = acc.Login;
+					FormsAuthentication.SetAuthCookie(acc.Login, false);
+					if (ReturnUrl != null) return Redirect(ReturnUrl);
+					return RedirectToAction("MainTest", "Main");
+				}
 			}
 		}
 
