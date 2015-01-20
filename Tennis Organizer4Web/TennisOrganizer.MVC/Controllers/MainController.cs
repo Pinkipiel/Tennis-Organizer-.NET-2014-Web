@@ -15,11 +15,16 @@ namespace TennisOrganizer.MVC.Controllers
         //
         // GET: /Main/
 		TennisOrganizerContext ctx = new TennisOrganizerContext();
-		Player LoggedInPlayer;
+		int LoggedInPlayerId = -1;
 
 		[Authorize]
 		public ActionResult MainTest()
         {
+			if (LoggedInPlayerId == -1)
+			{
+				String login = (String)TempData["RegisteredLogin"];
+				LoggedInPlayerId = ctx.Players.FirstOrDefault<Player>(p => p.Account.Login == login).AccountId;
+			}
             return View();
         }
 		[Authorize]
@@ -31,8 +36,8 @@ namespace TennisOrganizer.MVC.Controllers
 
 		public ActionResult Statistics()
 		{
-			LoggedInPlayer = ctx.Players.FirstOrDefault<Player>(p => p.AccountId == 1);		// DO USUNIĘCIA!!!!   DO USUNIĘCIA!!!!   DO USUNIĘCIA!!!!   DO USUNIĘCIA!!!!
-			var stats = new PlayerStats(LoggedInPlayer);
+			Player player = ctx.Players.FirstOrDefault<Player>(p => p.AccountId == LoggedInPlayerId);
+			var stats = new PlayerStats(player);
 			return View(stats);
 		}
 

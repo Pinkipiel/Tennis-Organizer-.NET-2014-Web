@@ -51,6 +51,7 @@ namespace TennisOrganizer.MVC.Controllers
 				//	Session["User"] = acc.Login;
 					FormsAuthentication.SetAuthCookie(acc.Login, false);
 					if (ReturnUrl != null) return Redirect(ReturnUrl);
+					TempData["RegisteredLogin"] = acc.Login;
 					return RedirectToAction("MainTest", "Main");
 				}
 			}
