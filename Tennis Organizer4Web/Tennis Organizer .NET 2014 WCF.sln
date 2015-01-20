@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizerClientApp", "Tennis Organizer .NET 2014\TennisOrganizerClientApp.csproj", "{FBA030F2-A178-429C-BB35-400C7E13918A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer4Web", "TennisOrganizer4Web\TennisOrganizer4Web\TennisOrganizer4Web.csproj", "{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TennisOrganizer.MVC", "TennisOrganizer.MVC\TennisOrganizer.MVC.csproj", "{8B4507F2-B46F-4318-94FE-1D7BE42F5535}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FBA030F2-A178-429C-BB35-400C7E13918A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FBA030F2-A178-429C-BB35-400C7E13918A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FBA030F2-A178-429C-BB35-400C7E13918A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FBA030F2-A178-429C-BB35-400C7E13918A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30C66911-8011-4A7E-BBB8-1BDE30BFC26C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,0 +1,41 @@
+﻿@model TennisOrganizer.MVC.ViewModels.PlayerStats
+
+@{
+    ViewBag.Title = "Statistics";
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table>
+	<tr>
+		<td>Ranking</td> <!-- Pozycja w rankingu -->
+		<td> @Model.Position </td>
+	</tr>
+	<tr>
+		<td>Najwyższa pozycja</td>
+		<td> @Model.TopPosition </td>
+	</tr>
+	<tr>
+		<td>Poziom</td>
+		<td> @Model.Level </td>
+	</tr>
+	<tr>
+		<td>Rozegranych meczy</td>
+		<td> @Model.PlayedMatches </td>
+	</tr>
+	<tr>
+		<td>Wygrane</td>
+		<td> @Model.won </td>
+	</tr>
+	<tr>
+		<td>Przegrane</td>
+		<td> @Model.lost </td>
+	</tr>
+	<tr>
+		<td>Meczy w miesiącu</td>
+		<td> @Model.MatchesInMonth </td>
+	</tr>
+	<tr>
+		<td>Ostatnio na korcie</td>
+		<td> @Model.LastMatchDate </td>
+	</tr>
+</table>

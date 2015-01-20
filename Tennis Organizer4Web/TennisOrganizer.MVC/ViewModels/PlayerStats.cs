@@ -15,7 +15,10 @@ namespace TennisOrganizer.MVC.ViewModels
 		public int Age { get; set; }
 		public int TopPosition { get; set; }
 		public int Position { get; set; }
-
+		public float Level { get; set; }
+		public int PlayedMatches { get; set; }
+		public int MatchesInMonth { get; set; }
+		public String LastMatchDate { get; set; }
 		public PlayerStats(Player p)
 		{
 			FirstName = p.FirstName;
@@ -25,6 +28,16 @@ namespace TennisOrganizer.MVC.ViewModels
 			TopPosition = p.TopPosition;
 			won =  p.GetWonMatchesCount();
 			lost = p.GetLostMatchesCount();
+			Level = p.SkillLevel;
+			PlayedMatches = won + lost;
+			MatchesInMonth = p.GetMonthlyMatchesCount();
+			
+			DateTime? date = p.GetLastMatchDate();
+			if (date == null)
+				LastMatchDate = "(brak spotkań)";
+			else
+				LastMatchDate = date.ToString();
+				
 		}
 	}
 }

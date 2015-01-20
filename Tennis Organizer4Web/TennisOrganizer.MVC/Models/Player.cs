@@ -136,6 +136,36 @@ namespace TennisOrganizer.MVC.Models
 				return stats;
 			}
 		}
+		public int GetMonthlyMatchesCount()
+		{
+			int count;
+
+			using (var db = new TennisOrganizerContext())
+			{
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				count = player.Matches.Where<Duel>
+					(p => p.DateOfPlay.Month == DateTime.Now.Month && p.DateOfPlay.Year == DateTime.Now.Year)
+					.Count<Duel>();
+			}
+			return count;
+		}
+		public DateTime? GetLastMatchDate()
+		{
+			DateTime? date;
+			using (var db = new TennisOrganizerContext())
+			{
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var pastMatches = (from p in player.Matches
+								   where p.DateOfPlay < DateTime.Now
+								   orderby p.DateOfPlay
+								   select p);
+				if (pastMatches.Count<Duel>() > 0)
+					date = pastMatches.FirstOrDefault<Duel>().DateOfPlay.Date;
+				else
+					date = null;
+			}
+			return date;
+		}
 
 		public override string ToString()
 		{
