@@ -39,8 +39,8 @@ namespace TennisOrganizer.MVC.Tests
 			 p1 = context.Players.FirstOrDefault<Player>(p => p.FirstName == "Test_1");
 			 p2 = context.Players.FirstOrDefault<Player>(p => p.FirstName == "Test_2");
 			 p3 = context.Players.FirstOrDefault<Player>(p => p.FirstName == "Test_3");
-			 context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId = p1.AccountId, HomePlayerId = p2.AccountId, Result = "3:0", Seen = true, DateOfPlay = new DateTime(2014, 11, 12, 12, 12, 12) });
-			 context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId= p1.AccountId, HomePlayerId = p3.AccountId, Result = "1:3", Seen = true, DateOfPlay=new DateTime(2014,12,12,12,12,12) });
+			 context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId = p1.AccountId, HomePlayerId = p2.AccountId, Result = "3:0", Seen = true, DateOfPlay = new DateTime(2015, 1, 15, 0, 0, 0) });
+			 context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId= p1.AccountId, HomePlayerId = p3.AccountId, Result = "1:3", Seen = true, DateOfPlay=new DateTime(2014,12,12,0,0,0) });
 			 context.SaveChanges();
 		 }
 		
@@ -80,6 +80,22 @@ namespace TennisOrganizer.MVC.Tests
 			int r1 = p1.GetRank();
 			int r3 = p3.GetRank();
 			Assert.IsTrue(r1 < r3);
+		}
+		[TestMethod]
+		public void Test_GetMonthlyMatchesCount()
+		{
+			Player p1 = context.Players.FirstOrDefault<Player>(p => p.FirstName == "Test_1");
+			int actual = p1.GetMonthlyMatchesCount();
+			int expected = 1;
+			Assert.AreEqual(expected, actual);
+		}
+		[TestMethod]
+		public void Test_GetLastMatchDate()
+		{
+			Player p3 = context.Players.FirstOrDefault<Player>(p => p.FirstName == "Test_3");
+			DateTime? expected = new DateTime(2014, 12, 12, 0, 0, 0);
+			DateTime? actual = p3.GetLastMatchDate();
+			Assert.AreEqual(expected, actual);
 		}
 	}
 }
