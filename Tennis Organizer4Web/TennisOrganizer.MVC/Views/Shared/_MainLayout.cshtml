@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+	<link rel="stylesheet" href="~/Content/reset.css" />
+	<link rel="stylesheet" href="~/Content/themes/main/style.css" />
+
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css' />
+	<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/jqueryval")
+	<script src="~/Scripts/jquery-validate-fixes.js"></script>
+</head>
+<body>
+	<header>
+		<a class="logo" href="">Tennis Organizer</a>
+	</header>
+	<div class="main-container">
+		<div id="top-panel">
+			<a id="top-panel-button" href=".">
+				Profil
+			</a>
+			<a id="top-panel-button" href=".">
+				Wyzwanie
+			</a>
+			<a id="top-panel-button" href=".">
+				Trening
+			</a>
+			<a id="top-panel-button" href=".">
+				Ranking
+			</a>
+		</div>
+		<div id="left-menu">
+			<ul>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+			</ul>
+		</div>
+		<div class="content">
+			<ul>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+				<li>
+					test
+				</li>
+			</ul>
+			@RenderBody();
+		</div>
+	</div>
+	<div id="authors">
+		Tennis Organizer by Kacper Sarnacki and Piotr Wcisło
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@RenderSection("scripts", required: false)
+</body>
+</html>
