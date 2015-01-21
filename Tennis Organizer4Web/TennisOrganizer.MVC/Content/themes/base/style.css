@@ -98,7 +98,7 @@ input[type=submit]:hover, button[type=submit]:hover
 {
 	background:rgb(150, 215,255);
 }
-input[type=submit]:active, button[type=submit]:hover
+input[type=submit]:active, button[type=submit]:active
 {
 	background:rgb(215, 235, 255);
 }

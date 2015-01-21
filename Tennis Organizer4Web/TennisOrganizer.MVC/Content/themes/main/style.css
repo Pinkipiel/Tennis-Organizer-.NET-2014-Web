@@ -66,34 +66,81 @@ input[type=submit]:active, button[type=submit]:hover
 {
 	background:rgb(215, 235, 255);
 }
+a{
+	text-decoration:none;
+	color:white;
+
+}
+a:visited{
+	text-decoration : none;
+	color:white;
+}
+
 .logo
 {
 	color:white;
 	text-decoration:none;
-	font-size:72pt;
+	font-size:48pt;
 	font-family: Impact;
 }
-header
+#rightNavBar{
+	font-size: 14px;
+	float:right;
+	color:white;
+	line-height:48pt;
+	height:100%;
+}
+
+.center
 {
-	background: black;
-	padding-left:20px;
+	width: 1348px;
+	position: relative;
+	display:block;
+	margin: 0px auto;
+}
+#top-panel
+{
+	margin-left: 0px;
+	margin-right:0px;
+	height:50px;
+	background-color: rgba(255, 255, 255, 0.9);
+	margin-bottom:10px;
+	padding:16px;
+	color:white;
+}
+.top-panel-button
+{
+	background-color: #39F;
+	font-size: 20pt;
+	text-decoration: none;
+	outline: medium none;
+	display: inline-block;
+	min-width: 10%;
+	min-height: 100%;
+	text-align: center;
+}
+.top-panel-button:visited
+{
+	background-color: #39F;
+	font-size: 20pt;
+	text-decoration: none;
+	outline: medium none;
+	display: inline-block;
+	min-width: 10%;
+	min-height: 100%;
+	text-align: center;
+}
+.top-panel-button:hover
+{
+	background:rgb(150, 215,255);
+}
+.top-panel-button:active
+{
+	background:rgb(215, 235, 255);
 }
 .main-container {
 	margin-bottom:10px;
 	min-height:500px;
-	width: 1348px;
-    margin: 0px auto;
-    position: relative;
-	display:block;
-}
-#left-menu
-{
-	float:left;
-	width:160px;
-	min-height:inherit;
-	background-color:#3399FF;
-	margin-right:10px;
-	padding:16px;
 }
 .content
 {
@@ -108,29 +155,17 @@ header
     -moz-box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
     box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.5);
 }
-#top-panel
+
+#left-menu
 {
-	margin-left: 0px;
-	margin-right:0px;
-	height:50px;
-	background-color: rgba(255, 255, 255, 0.9);
-	margin-bottom:10px;
+	float:left;
+	width:160px;
+	min-height:inherit;
+	background-color:#3399FF;
+	margin-right:10px;
 	padding:16px;
 }
-#top-panel-button
-{
-	font-size:20pt;
-	color:black;
-	text-decoration:none;
-	outline:medium none;
-}
-#top-panel-button:visited
-{
-	font-size:20pt;
-	color:black;
-	text-decoration:none;
-	outline:medium none;
-}
+
 #authors
 {
 	margin:0px auto;
