@@ -171,6 +171,7 @@ namespace TennisOrganizer.MVC.Models
 		{
 			DateTime dt = DateTime.Now;
 			return dt.Year - BirthDate.Year;
+		}
 		public List<Player> GetOpponentsBy(DateTime gameTime, int ageFrom, int ageTo, float levelFrom, float levelTo)
 		{
 			using (var Context = new TennisOrganizerContext())
