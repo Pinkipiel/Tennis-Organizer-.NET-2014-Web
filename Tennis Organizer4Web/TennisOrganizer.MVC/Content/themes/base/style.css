@@ -113,3 +113,7 @@ input[type=submit]:active, button[type=submit]:hover
 {
 	color:red;
 }
+header
+{
+	padding-left:20px;
+}
