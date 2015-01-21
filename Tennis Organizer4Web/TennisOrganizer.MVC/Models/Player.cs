@@ -166,6 +166,38 @@ namespace TennisOrganizer.MVC.Models
 			}
 			return date;
 		}
+		public List<Player> GetOpponentsBy(DateTime gameTime, int ageFrom, int ageTo, float levelFrom, float levelTo)
+		{
+			using (var Context = new TennisOrganizerContext())
+			{
+				Player player = Context.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var playersQuery = from p in Context.Players.AsEnumerable<Player>()
+								   where CanPlay(player, gameTime)
+								   && p.Age >= ageFrom && p.Age <= ageTo
+								   && p.SkillLevel >= levelFrom && p.SkillLevel <= levelTo
+								   && p.AccountId != player.AccountId
+								   //&& !(p is Trainer)
+								   select p;
+
+				return playersQuery.ToList<Player>();
+			}
+		}
+		public bool CanPlay(Player player, DateTime date)
+		{
+			bool hasAnotherMatch;
+			//Context.Players.Attach(player);
+			hasAnotherMatch = (from m in player.Matches
+							   where m.DateOfPlay.Year == date.Year && m.DateOfPlay.Month == date.Month && m.DateOfPlay.Day == date.Day
+							   select m).Any<Duel>();
+			return !hasAnotherMatch;
+		}
+		public static Player GetPlayerByLogin(string login)
+		{
+			using (var db = new TennisOrganizerContext())
+			{
+				return db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
+			}
+		}
 
 		public override string ToString()
 		{

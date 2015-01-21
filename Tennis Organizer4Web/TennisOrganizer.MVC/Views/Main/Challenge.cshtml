@@ -1,6 +1,63 @@
-﻿@{
+﻿@model TennisOrganizer.MVC.ViewModels.ChallengeCriteria
+@{
     ViewBag.Title = "Challenge";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2>Challenge</h2>
+
+@using (Html.BeginForm()) {
+	<table>
+		<tr>
+			<td> @Html.LabelFor(m => m.Date) </td>
+			<td> @Html.TextBoxFor(m => m.Date)</td>
+		</tr>
+		<tr>
+			<td> @Html.LabelFor(m => m.Hour) </td>
+			<td> @Html.TextBoxFor(m => m.Hour)</td>
+		</tr>
+		<tr>
+			<td> @Html.LabelFor(m => m.City) </td>
+			<td> @Html.TextBoxFor(m => m.City)</td>
+		</tr>
+		<tr>
+			<td> @Html.LabelFor(m => m.AgeFrom) </td>
+			<td> 
+				   @Html.TextBoxFor(m=>m.AgeFrom)
+				   @Html.LabelFor(m => m.AgeTo) 
+				   @Html.TextBoxFor(m => m.AgeTo)
+			</td>
+		</tr>
+		<tr>
+			<td> @Html.LabelFor(m => m.LevelFrom) </td>
+			<td>
+				@Html.TextBoxFor(m => m.LevelFrom)
+				@Html.LabelFor(m => m.LevelTo)
+				@Html.TextBoxFor(m => m.LevelTo)
+			</td>
+		</tr>
+		<tr>
+			<td> <button type="submit">Wyzwij!</button> </td>
+			<td></td>
+		</tr>
+	</table>
+}
+
+@if (@Model != null && @Model.SuitableOpponents != null)
+{
+	<table>
+		<tr>
+			<th>IMIĘ</th>
+			<th>NAZWISKO</th>
+			<th>WIEK</th>
+		</tr>
+		@foreach (var player in @Model.SuitableOpponents)
+		{
+			<tr>
+				<td>@player.FirstName</td>
+				<td>@player.LastName</td>
+				<td>@player.Age</td>
+			</tr>
+		}
+	</table>
+}
