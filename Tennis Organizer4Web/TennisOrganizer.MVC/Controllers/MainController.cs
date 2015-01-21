@@ -43,7 +43,7 @@ namespace TennisOrganizer.MVC.Controllers
 			var stats = Player.GetPlayersStats();
 			return View(stats);
 		}
-
+		[Authorize]
 		public ActionResult Statistics()
 		{
 			using (var db = new TennisOrganizerContext())
@@ -56,10 +56,18 @@ namespace TennisOrganizer.MVC.Controllers
 		}
 
 		[Authorize]
+		[HttpGet]
 		public ActionResult Challenge()
 		{
-			//zmienić
 			return View();
+		}
+		[Authorize]
+		[HttpPost]
+		public ActionResult Challenge(ChallengeCriteria cc)
+		{
+			Player player = Player.GetPlayerByLogin(User.Identity.Name);
+			cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, cc.AgeFrom, cc.AgeTo, cc.LevelFrom, cc.LevelTo);
+			return View(cc);
 		}
 		[Authorize]
 		public ActionResult Training()
