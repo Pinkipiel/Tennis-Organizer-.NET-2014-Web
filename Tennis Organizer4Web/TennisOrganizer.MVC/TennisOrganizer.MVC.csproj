@@ -161,6 +161,10 @@
     <Compile Include="Migrations\201501210010236_Password.Designer.cs">
       <DependentUpon>201501210010236_Password.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501211908141_BirthDate.cs" />
+    <Compile Include="Migrations\201501211908141_BirthDate.Designer.cs">
+      <DependentUpon>201501211908141_BirthDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Encrypter.cs" />
@@ -274,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501210010236_Password.resx">
       <DependentUpon>201501210010236_Password.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501211908141_BirthDate.resx">
+      <DependentUpon>201501211908141_BirthDate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

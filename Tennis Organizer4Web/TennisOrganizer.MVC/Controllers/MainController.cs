@@ -25,7 +25,13 @@ namespace TennisOrganizer.MVC.Controllers
 				String login = User.Identity.Name;
 				using (var db = new TennisOrganizerContext())
 				{
-					LoggedInPlayerId = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login).AccountId;
+					var LoggedInPlayer = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
+					if(LoggedInPlayer == null)
+					{
+						FormsAuthentication.SignOut();
+						return RedirectToAction("Index", "Home");
+					}
+					LoggedInPlayerId = LoggedInPlayer.AccountId;
 					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
 				}
 			}

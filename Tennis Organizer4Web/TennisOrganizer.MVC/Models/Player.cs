@@ -24,9 +24,9 @@ namespace TennisOrganizer.MVC.Models
 		public String LastName { get; set; }
 
 		[Required(ErrorMessage = "Pole Wymagane")]
-		[Range(0, 200)]
-		[Display(Name = "Wiek")]
-		public int Age { get; set; }
+		[Display(Name = "Data Urodzenia")]
+		[DataType(DataType.Date)]
+		public DateTime BirthDate { get; set; }
 
 		[Display(Name="Telefon")]
 		[DataType(DataType.PhoneNumber)]
@@ -66,6 +66,7 @@ namespace TennisOrganizer.MVC.Models
 		{
 			HomeMatches = new HashSet<Duel>();
 			AwayMatches = new HashSet<Duel>();
+			BirthDate = new DateTime(1, 1, 1);
 		}
 		public int GetWonMatchesCount()
 		{
@@ -165,6 +166,11 @@ namespace TennisOrganizer.MVC.Models
 					date = null;
 			}
 			return date;
+		}
+		public int GetAge()
+		{
+			DateTime dt = DateTime.Now;
+			return dt.Year - BirthDate.Year;
 		}
 
 		public override string ToString()

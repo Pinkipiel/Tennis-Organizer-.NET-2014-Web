@@ -23,7 +23,7 @@ namespace TennisOrganizer.MVC.ViewModels
 		{
 			FirstName = p.FirstName;
 			LastName = p.LastName;
-			Age = p.Age;
+			Age = p.GetAge();
 			Position = p.GetRank();
 			TopPosition = p.TopPosition;
 			won =  p.GetWonMatchesCount();

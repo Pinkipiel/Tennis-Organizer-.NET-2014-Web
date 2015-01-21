@@ -2,13 +2,26 @@
 
 @{
 	Layout = "~/Views/Shared/_Layout.cshtml";
+	//Model.Player.BirthDate = new BirthDate(1, 1, 1);
 }
 <style>
-	input[type=text], input[type=password] {
-		width: 50%;
+	input[type="text"], input[type="password"]
+	{
+		width:52%;
+	}
+	input.birthDay {
+		width: 15%;
+	}
+
+	input.birthYear {
+		width: 20% !important;
+	}
+
+	input.birthMonth {
+		width: 15%;
 	}
 </style>
-@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { id = "RegisterForm" }))
+@using (Html.BeginForm("Register", "Home", FormMethod.Post, new { @id = "RegisterForm" }))
 { 
 <ul>
 	<li>
@@ -53,11 +66,11 @@
 		@Html.ValidationMessageFor(model => model.Player.LastName)
 	</li>
 	<li>
-		@Html.LabelFor(model => model.Player.Age)
+		@Html.LabelFor(model => model.Player.BirthDate)
 	</li>
 	<li>
-		@Html.TextBoxFor(model => model.Player.Age)
-		@Html.ValidationMessageFor(model => model.Player.Age)
+		@Html.TextBoxFor(model => model.Player.BirthDate, new { @class = "jquery_datepicker"});
+		
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.Email)
@@ -84,4 +97,3 @@
 	</li>
 </ul>
 }
-

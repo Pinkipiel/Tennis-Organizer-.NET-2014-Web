@@ -97,7 +97,7 @@ namespace TennisOrganizer.MVC.Models
 					if (updated == null) return false;
 					updated.FirstName = p.FirstName;
 					updated.LastName = p.LastName;
-					updated.Age = p.Age;
+					updated.BirthDate = p.BirthDate ;
 					updated.PhoneNumber = p.PhoneNumber;
 					updated.Email = p.Email;
 					updated.ImagePath = p.ImagePath;

@@ -46,7 +46,7 @@ ul li.text
 }
 input[type=text], input[type=password]
 {
-	width:100%;
+	width:50%;
 }
 input[type=submit], button[type=submit]
 {
