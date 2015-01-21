@@ -66,7 +66,17 @@ namespace TennisOrganizer.MVC.Controllers
 		public ActionResult Challenge(ChallengeCriteria cc)
 		{
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
-			cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, cc.AgeFrom, cc.AgeTo, cc.LevelFrom, cc.LevelTo);
+
+			if (cc.AgeFrom == null)
+				cc.AgeFrom = 0;
+			if (cc.AgeTo == null)
+				cc.AgeTo = 200;
+			if (cc.LevelFrom == null)
+				cc.LevelFrom = 0;
+			if (cc.LevelTo == null)
+				cc.LevelTo = 100;
+
+			cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
 			return View(cc);
 		}
 		[Authorize]

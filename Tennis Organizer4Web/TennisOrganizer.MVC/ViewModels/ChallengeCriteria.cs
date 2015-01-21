@@ -17,15 +17,15 @@ namespace TennisOrganizer.MVC.ViewModels
 		[DisplayName("Godzina")]
 		public String Hour { get; set; }
 		[DisplayName("Wiek od")]
-		public int AgeFrom { get; set; }
+		public int? AgeFrom { get; set; }
 		[DisplayName("do")]
-		public int AgeTo { get; set; }
+		public int? AgeTo { get; set; }
 		[DisplayName("Miasto")]
 		public String City { get; set; }
 		[DisplayName("Poziom od")]
-		public float LevelFrom { get; set; }
+		public float? LevelFrom { get; set; }
 		[DisplayName("do")]
-		public float LevelTo { get; set; }
+		public float? LevelTo { get; set; }
 		public List<Player> SuitableOpponents { get; set; }
 	}
 }

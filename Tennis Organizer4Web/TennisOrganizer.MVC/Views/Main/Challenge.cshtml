@@ -10,11 +10,17 @@
 	<table>
 		<tr>
 			<td> @Html.LabelFor(m => m.Date) </td>
-			<td> @Html.TextBoxFor(m => m.Date)</td>
+			<td> 
+				@Html.TextBoxFor(m => m.Date)
+				@Html.ValidationMessageFor(model => model.Date)
+			</td>
 		</tr>
 		<tr>
 			<td> @Html.LabelFor(m => m.Hour) </td>
-			<td> @Html.TextBoxFor(m => m.Hour)</td>
+			<td> 
+				@Html.TextBoxFor(m => m.Hour)
+				@Html.ValidationMessageFor(model => model.Hour)
+			</td>
 		</tr>
 		<tr>
 			<td> @Html.LabelFor(m => m.City) </td>
