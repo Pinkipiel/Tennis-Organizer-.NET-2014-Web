@@ -28,6 +28,7 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 
 			ViewData.Add("RegisteredLogin", (String)TempData["RegisteredLogin"]);
+			Mailer.NotifyAboutRegistration((string)TempData["RegisteredName"], (string)TempData["RegisteredLogin"], (string)TempData["RegisteredEmail"]);
 			return View();
 		}
 		[HttpPost]
@@ -41,7 +42,7 @@ namespace TennisOrganizer.MVC.Controllers
 					ViewData.Add("LoginNotFound", (bool)true);
 					return View(acc);
 				}
-				else if (query.Password != acc.Password)
+				else if (Account.CheckPassword(query.Login, acc.Password) == false)
 				{
 					ViewData.Add("PasswordIncorrect", (bool)true);
 					return View(acc);
@@ -74,12 +75,11 @@ namespace TennisOrganizer.MVC.Controllers
 					{
 						Account acc = new Account { Login = rvm.Login, Password = rvm.Password };
 						Player p = rvm.Player;
-						acc.Player = p;
-						db.Accounts.Add(acc);
-						db.Players.Add(p);
-						db.SaveChanges();
+						Account.CreateAccount(acc, p);
 
 						TempData.Add("RegisteredLogin", rvm.Login);
+						TempData.Add("RegisteredName", rvm.Player.FirstName);
+						TempData.Add("RegisteredEmail", rvm.Player.Email);
 						return RedirectToAction("RegisterSuccess");
 					}
 				}

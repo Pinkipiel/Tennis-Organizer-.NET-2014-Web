@@ -20,7 +20,7 @@ namespace TennisOrganizer.MVC.Models
 
 		[Required(ErrorMessage = "Wprowadź swoje hasło")]
 		[MinLength(3, ErrorMessage="Hasło musi zawierać co najmniej 3 znaki")]
-		[StringLength(30, MinimumLength = 3, ErrorMessage = "Hasło musi zawierać co najmniej 3 znaki")]
+		[StringLength(100, MinimumLength = 3, ErrorMessage = "Hasło musi zawierać co najmniej 3 znaki")]
 		[Display(Name = "Hasło")]
 		[DataType(DataType.Password)]
 		public String Password { get; set; }
@@ -45,6 +45,7 @@ namespace TennisOrganizer.MVC.Models
 			if (acc == null || p == null) return false;
 			if (CheckAvailability(acc.Login) == false) return false;
 			acc.Player = p;
+			acc.Password = Encrypter.GetSHA256Hash(acc.Password);
 			using (var db = new TennisOrganizerContext())
 			{
 				db.Accounts.Add(acc);
@@ -59,14 +60,14 @@ namespace TennisOrganizer.MVC.Models
 			}
 		}
 
-		public static bool UpdateAccount(Account acc, String oldPassword, String newPassword = "default", String newLogin = "default")
+		public bool UpdateAccount(Account acc, String oldPassword, String newPassword = "default", String newLogin = "default")
 		{
 			if (acc == null) return false;
 			using (var db = new TennisOrganizerContext())
 			{
 				var query = db.Accounts.FirstOrDefault<Account>(a => a.AccountId == acc.AccountId);
 				if (query == null) return false;
-				else if (query.Password != oldPassword) return false;
+				else if (query.Password != Encrypter.GetSHA256Hash(oldPassword)) return false;
 				else
 				{
 					if (newLogin != "default")
@@ -75,7 +76,7 @@ namespace TennisOrganizer.MVC.Models
 					}
 					if (newPassword != "default")
 					{
-						query.Password = newPassword;
+						query.Password = Encrypter.GetSHA256Hash(newPassword);
 					}
 					db.SaveChanges();
 					return true;
@@ -105,6 +106,18 @@ namespace TennisOrganizer.MVC.Models
 					db.SaveChanges();
 					return true;
 				}
+			}
+		}
+	
+		public static bool CheckPassword(String login, String password)
+		{
+			password = Encrypter.GetSHA256Hash(password);
+			using(var db = new TennisOrganizerContext())
+			{
+				var query = db.Accounts.FirstOrDefault<Account>(a => a.Login == login);
+				if (query == null) return false;
+				if (password != query.Password) return false;
+				return true;
 			}
 		}
 	}

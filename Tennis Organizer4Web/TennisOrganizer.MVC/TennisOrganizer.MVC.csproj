@@ -157,8 +157,14 @@
     <Compile Include="Migrations\201501170030323_DwaDoWielu.Designer.cs">
       <DependentUpon>201501170030323_DwaDoWielu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501210010236_Password.cs" />
+    <Compile Include="Migrations\201501210010236_Password.Designer.cs">
+      <DependentUpon>201501210010236_Password.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Encrypter.cs" />
+    <Compile Include="Models\Mailer.cs" />
     <Compile Include="Models\Duel.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\RegistrationViewModel.cs" />
@@ -265,6 +271,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501170030323_DwaDoWielu.resx">
       <DependentUpon>201501170030323_DwaDoWielu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501210010236_Password.resx">
+      <DependentUpon>201501210010236_Password.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

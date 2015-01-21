@@ -14,16 +14,20 @@ namespace TennisOrganizer.MVC.Controllers
     {
         //
         // GET: /Main/
-		TennisOrganizerContext ctx = new TennisOrganizerContext();
+		//TennisOrganizerContext ctx = new TennisOrganizerContext();
 		int LoggedInPlayerId = -1;
 
 		[Authorize]
 		public ActionResult MainTest()
         {
-			if (LoggedInPlayerId == -1)
+			if (Session["LoggedInPlayerId"] == null || (int)Session["LoggedInPlayerId"] <= 0)
 			{
-				String login = (String)TempData["RegisteredLogin"];
-				LoggedInPlayerId = ctx.Players.FirstOrDefault<Player>(p => p.Account.Login == login).AccountId;
+				String login = User.Identity.Name;
+				using (var db = new TennisOrganizerContext())
+				{
+					LoggedInPlayerId = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login).AccountId;
+					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
+				}
 			}
             return View();
         }
@@ -36,9 +40,13 @@ namespace TennisOrganizer.MVC.Controllers
 
 		public ActionResult Statistics()
 		{
-			Player player = ctx.Players.FirstOrDefault<Player>(p => p.AccountId == LoggedInPlayerId);
-			var stats = new PlayerStats(player);
-			return View(stats);
+			using (var db = new TennisOrganizerContext())
+			{
+				int id = (int)Session["LoggedInPlayerId"];
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == id);
+				var stats = new PlayerStats(player);
+				return View(stats);
+			}
 		}
 
 		[Authorize]
