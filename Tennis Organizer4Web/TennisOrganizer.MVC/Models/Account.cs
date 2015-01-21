@@ -60,21 +60,21 @@ namespace TennisOrganizer.MVC.Models
 			}
 		}
 
-		public bool UpdateAccount(Account acc, String oldPassword, String newPassword = "default", String newLogin = "default")
+		public bool UpdateAccount(String oldPassword, String newPassword = "default", String newLogin = "default")
 		{
-			if (acc == null) return false;
+			if (this == null) return false;
 			using (var db = new TennisOrganizerContext())
 			{
-				var query = db.Accounts.FirstOrDefault<Account>(a => a.AccountId == acc.AccountId);
+				var query = db.Accounts.FirstOrDefault<Account>(a => a.AccountId == this.AccountId);
 				if (query == null) return false;
 				else if (query.Password != Encrypter.GetSHA256Hash(oldPassword)) return false;
 				else
 				{
-					if (newLogin != "default")
+					if (newLogin != "default" && newLogin != null)
 					{
 						query.Login = newLogin;
 					}
-					if (newPassword != "default")
+					if (newPassword != "default" && newPassword != null)
 					{
 						query.Password = Encrypter.GetSHA256Hash(newPassword);
 					}

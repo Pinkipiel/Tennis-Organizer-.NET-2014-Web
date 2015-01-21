@@ -25,13 +25,13 @@ namespace TennisOrganizer.MVC.Tests
 		[TestInitialize()]
 		 public void MyTestInitialize() 
 		{
-			 Player p1 = new Player() { FirstName = "Test_1", LastName = "Test", Age = 1, City = "TEST", Email = "test@test.pl", SkillLevel = 2 };
+			 Player p1 = new Player() { FirstName = "Test_1", LastName = "Test", BirthDate = new DateTime(1990,1,1), City = "TEST", Email = "test@test.pl", SkillLevel = 2 };
 			 context.Accounts.Add(new Account() { Login = "test_1", Password = "adam", Player = p1 });
 			 context.Players.Add(p1);
-			 Player p2 = new Player() { FirstName = "Test_2", LastName = "Testowy", Age = 45, City = "TESTION", Email = "as@asa.pl", SkillLevel = 4 };
+			 Player p2 = new Player() { FirstName = "Test_2", LastName = "Testowy", BirthDate = new DateTime(1991,1,1), City = "TESTION", Email = "as@asa.pl", SkillLevel = 4 };
 			 context.Accounts.Add(new Account() { Login = "test_2", Password = "piotr", Player = p2 });
 			 context.Players.Add(p2);
-			 Player p3 = new Player() { FirstName = "Test_3", LastName = "Te?ciak", Age = 17, City = "T", Email = "sddfs@sdfsdf.com", SkillLevel = 1};
+			 Player p3 = new Player() { FirstName = "Test_3", LastName = "Te?ciak", BirthDate = new DateTime(1992,2,2), City = "T", Email = "sddfs@sdfsdf.com", SkillLevel = 1};
 			 context.Accounts.Add(new Account() { Login = "test_3", Password = "janek", Player = p3 });
 			 context.Players.Add(p3);
 			 context.SaveChanges();

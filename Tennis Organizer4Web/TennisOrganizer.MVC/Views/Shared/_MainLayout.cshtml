@@ -21,9 +21,16 @@
 		<div class="center">
 			<a class="logo" href="/Main/MainTest">Tennis Organizer</a>
 			<div id="rightNavBar">
-				@Html.ActionLink("Profil", "LogOff", "Main", null) |
-				@Html.ActionLink("Konto", "LogOff", "Main", null) |
-				@Html.ActionLink("Wyloguj", "LogOff", "Main", null)  
+				@Html.ActionLink("Profil", "ProfileEdition", "Main", null) |
+				@Html.ActionLink("Konto", "AccountEdition", "Main", null) |
+				@if(Session["LoggedInPlayer"] != null)
+				{
+					@Html.ActionLink("Wyloguj (" + (string)Session["LoggedInPlayer"] + ")", "LogOff", "Main", null)
+				}
+				else
+				{
+					@Html.ActionLink("Wyloguj", "LogOff", "Main", null)
+				}
 		</div>
 	</div>
 	</header>
