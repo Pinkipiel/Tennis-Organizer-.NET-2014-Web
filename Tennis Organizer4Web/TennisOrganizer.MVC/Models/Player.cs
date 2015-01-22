@@ -294,7 +294,73 @@ namespace TennisOrganizer.MVC.Models
 			}
 			return info;
 		}
-
+		public Duel[] GetAcceptedNotSeenDuels()
+		{
+			Player player = Player.GetPlayerById(AccountId);
+			using (var Context = new TennisOrganizerContext())
+			{
+				Context.Players.Attach(player);
+				Duel[] duels = (from d in player.Matches
+								where
+								(d.HomePlayerId == player.AccountId
+								&& d.Seen == false
+								&& d.Accepted == true
+								&& DateTime.Compare(d.DateOfPlay, DateTime.Now) >= 0)
+								select d).ToArray<Duel>();
+				return duels;
+			}
+		}
+		public Duel[] GetRejectedNotSeenDuels()
+		{
+			Player player = Player.GetPlayerById(AccountId);
+			using (var Context = new TennisOrganizerContext())
+			{
+				Duel[] duels;
+				Context.Players.Attach(player);
+				duels = (from d in player.Matches
+						 where
+						 (d.HomePlayerId == player.AccountId
+						 && d.Seen == false
+						 && d.Accepted == false
+						 && DateTime.Compare(d.DateOfPlay, DateTime.Now) >= 0)
+						 select d).ToArray<Duel>();
+				return duels;
+			}
+		}
+		public Duel[] GetFinishedNotRatedDuels()
+		{
+			Player player = Player.GetPlayerById(AccountId);
+			using (var Context = new TennisOrganizerContext())
+			{
+				Duel[] info;
+				Context.Players.Attach(player);
+				info = (from d in player.Matches
+						where
+						(d.HomePlayerId == player.AccountId
+						&& d.Accepted == true
+						&& d.Result == String.Empty
+						&& DateTime.Compare(d.DateOfPlay, DateTime.Now) < 0)
+						//&& !(d.GuestPlayer is Trainer)
+						select d).ToArray<Duel>();
+				return info;
+			}
+		}
+		public Duel[] GetChallengingDuels()
+		{
+			Duel[] list;
+			Player player = Player.GetPlayerById(AccountId);
+			using (var Context = new TennisOrganizerContext())
+			{
+				Context.Players.Attach(player);
+				list = (from d in player.Matches
+						where
+						(d.GuestPlayerId == player.AccountId
+						&& d.Accepted == null
+						&& DateTime.Compare(d.DateOfPlay, DateTime.Now) > 0)
+						select d).ToArray<Duel>();
+			}
+			return list;
+		}
 		public override string ToString()
 		{
 			return FirstName + " " + LastName;

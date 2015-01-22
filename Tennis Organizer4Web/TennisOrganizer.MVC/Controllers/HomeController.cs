@@ -16,7 +16,7 @@ namespace TennisOrganizer.MVC.Controllers
 		public ActionResult Index(string returnUrl)
         {
 			if (Request.IsAuthenticated)
-				return RedirectToAction("MainTest", "Main");
+				return RedirectToAction("Profile", "Main");
 			ViewBag.ReturnUrl = returnUrl;
             return View();
         }
