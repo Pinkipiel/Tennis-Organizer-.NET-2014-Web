@@ -1,6 +1,70 @@
-﻿@{
-    ViewBag.Title = "Training";
+﻿@model TennisOrganizer.MVC.ViewModels.TrainingCriteria
+
+@{
+    ViewBag.Title = "Trening";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
 <h2>Training</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Dane Treningu</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Date)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.Date, new { @class = "jquery_datepicker", @placeholder = "RRRR-MM-DD", @Value = ""})
+            @Html.ValidationMessageFor(model => model.Date)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Hour)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Hour)
+            @Html.ValidationMessageFor(model => model.Hour)
+        </div>
+		<hr />
+		
+		@if (Model != null && Model.SuitableOpponents != null)
+		{
+
+		<table class="disp1">
+			<tr>
+				<th>LP</th>
+				<th>IMIĘ</th>
+				<th>NAZWISKO</th>
+				<th>WIEK</th>
+				<th>OPIS</th>
+			</tr>
+			@foreach (var player in @Model.SuitableOpponents)
+			{
+				<tr>
+					<td>
+						@Html.HiddenFor(m => @Model.Date)
+						@Html.HiddenFor(m => @Model.Hour)
+						@Html.RadioButtonFor(m => m.OpponentNumber, player.AccountId)
+					</td>
+					<td>@player.FirstName</td>
+					<td>@player.LastName</td>
+					<td>@player.GetAge()</td>
+					
+					<td>@player.Description</td>
+				</tr>
+			}
+		</table>
+		}
+		<button type="submit">Umów się na trening</button>
+        
+    </fieldset>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
