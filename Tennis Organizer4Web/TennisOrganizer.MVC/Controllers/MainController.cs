@@ -74,17 +74,25 @@ namespace TennisOrganizer.MVC.Controllers
 			}
 
 			// else
-			Player opponent = Player.GetPlayerById(cc.OpponentNumber);
+			Player opponent = new Player() {  AccountId = cc.OpponentNumber};
 			String[] hour = cc.Hour.ToString().Split(':') ;
 			DateTime date = (DateTime)cc.Date;
-			DateTime dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
+			//dateOfPlay.Hour = hour[0];
+			//dateOfPlay.Minute = hour[1];
+			DateTime dateOfPlay;
+			try
+			{
+				dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
+			}
+			catch (IndexOutOfRangeException)
+			{
+				return View(cc);
+			}
 
 			using (var db = new TennisOrganizerContext())
 			{
 				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = dateOfPlay });
 				db.SaveChanges();
-
-				Mailer.NotifyAboutChallenge(player.ToString(), opponent.Email, opponent.ToString());
 
 				TempData.Add("opponentName", Player.GetPlayerById(cc.OpponentNumber).ToString());
 				TempData.Add("dateOfPlay", cc.Date.ToShortDateString());
@@ -105,23 +113,6 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Profile()
 		{
-			if (Session["LoggedInPlayerId"] == null || (int)Session["LoggedInPlayerId"] <= 0)
-			{
-				String login = User.Identity.Name;
-				using (var db = new TennisOrganizerContext())
-				{
-					var LoggedInPlayer = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
-					if (LoggedInPlayer == null)
-					{
-						FormsAuthentication.SignOut();
-						return RedirectToAction("Index", "Home");
-					}
-					LoggedInPlayerId = LoggedInPlayer.AccountId;
-					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
-					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
-					Session.Add("ImagePath", (string)LoggedInPlayer.ImagePath);
-				}
-			}
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 			return View(player);
 		}
@@ -257,8 +248,7 @@ namespace TennisOrganizer.MVC.Controllers
 					string path = FilesPath + DirSeparator + fileName + fileExt; 
 					file.SaveAs(Path.GetFullPath(path));
 					model.ImagePath = fileName + fileExt;
-					model.UpdatePlayer();
-					Session.Add("ImagePath", model.ImagePath);
+
 					//zapisz thumbnail:
 
 					string thumbnailDirectory = String.Format(@"{0}{1}{2}", FilesPath, DirSeparator, "Thumbnails");

@@ -38,6 +38,21 @@ namespace TennisOrganizer.MVC.Models
 			HomePlayer = _homePlayer;
 			GuestPlayer = _guestPlayer;
 		}
-
+		public static Duel GetDuelByID(int duelID)
+		{
+			Duel duel;
+			using (var db = new TennisOrganizerContext())
+			{
+				duel = db.Duels.FirstOrDefault<Duel>(d => d.DuelId == duelID);
+			}
+			return duel;
+		}
+		public override bool Equals(object obj)
+		{
+			if (!(obj is Duel))
+				return false;
+			Duel d = obj as Duel;
+			return DuelId == d.DuelId;
+		}
 	}
 }

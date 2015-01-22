@@ -361,6 +361,19 @@ namespace TennisOrganizer.MVC.Models
 			}
 			return list;
 		}
+
+		public Player GetOpponentBy(int duelID)
+		{
+			Player player;
+			using (var db = new TennisOrganizerContext())
+			{
+				player = (from d in db.Duels
+						  where d.DuelId == duelID
+						  let p = d.HomePlayerId == AccountId ? d.GuestPlayer : d.HomePlayer
+						  select p).Single<Player>();
+			}
+			return player;
+		}
 		public override string ToString()
 		{
 			return FirstName + " " + LastName;
