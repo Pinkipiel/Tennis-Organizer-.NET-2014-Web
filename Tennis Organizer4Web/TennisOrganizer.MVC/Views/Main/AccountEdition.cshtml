@@ -1,0 +1,51 @@
+﻿@model TennisOrganizer.MVC.ViewModels.AccountEditorData
+
+@{
+    ViewBag.Title = "AccountEdition";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Ustawienia konta</h2>
+
+@using (Html.BeginForm("AccountEdition", "Main", FormMethod.Post, new { @id = "AccountEditionForm" }))
+{
+	<ul>
+		<li>
+			@Html.LabelFor(model => model.Login)
+		</li>
+		<li>
+			@Html.TextBoxFor(model => model.Login, new { @value = Model.Login } )
+			@Html.ValidationMessageFor(model => model.Login)
+			@if (ViewData["LoginAvailability"] != null && (bool)ViewData["LoginAvailability"] == false)
+			{
+				@Html.Label("Podany login jest zajęty", new { @class = "errorLabel" })
+			}
+
+		</li>
+		<li>
+			@Html.LabelFor(model => model.Password)
+		</li>
+		<li>
+			@Html.EditorFor(model => model.Password)
+			@Html.ValidationMessageFor(model => model.Password)
+		</li>
+		<li>
+		<li>
+			@Html.LabelFor(model => model.RepeatedPassword)
+		</li>
+		<li>
+			@Html.EditorFor(model => model.RepeatedPassword)
+			@Html.ValidationMessageFor(model => model.RepeatedPassword)
+		</li>
+		<li>
+			@Html.LabelFor(model => model.NewPassword)
+		</li>
+		<li>
+			@Html.EditorFor(model => model.NewPassword)
+			@Html.ValidationMessageFor(model => model.NewPassword)
+		</li>
+		<li>
+			<button type="submit" value="Zapisz" style="width:50%">Zapisz</button>
+		</li>
+	</ul>
+}

@@ -33,6 +33,7 @@ namespace TennisOrganizer.MVC.Controllers
 					}
 					LoggedInPlayerId = LoggedInPlayer.AccountId;
 					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
+					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
 				}
 			}
             return View();
@@ -96,6 +97,42 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			FormsAuthentication.SignOut();
 			return RedirectToAction("Index", "Home");
+		}
+		[Authorize]
+		public ActionResult AccountEdition()
+		{
+			AccountEditorData aed = new AccountEditorData() { Login = (string)Session["LoggedInPlayer"]};
+			return View(aed);
+		}
+		[HttpPost]
+		[Authorize]
+		public ActionResult AccountEdition(AccountEditorData model)
+		{
+			if (Session["LoggedInPlayerId"] == null || Session["LoggedInPlayer"] == null) return RedirectToAction("Index", "Home");
+			if(ModelState.IsValid)
+			{
+				if (model.Login != (string)Session["LoggedInPlayer"])
+				{
+					if (!Account.CheckAvailability(model.Login))
+					{
+						ViewData.Add("LoginAvailability", (bool)false);
+						return View(model);
+					}
+					Account acc = new Account() { AccountId = (int)Session["LoggedInPlayerId"] };
+					if(acc.UpdateAccount(model.Password, model.NewPassword, model.Login) == false)
+					{
+						ViewData.Add("PasswordIncorrect", (bool)true);
+						return View(model);
+					}
+					else
+					{
+						FormsAuthentication.SignOut();
+						FormsAuthentication.SetAuthCookie(model.Login, false);
+					}
+				}
+			}
+			
+			return View(model);
 		}
     }
 }

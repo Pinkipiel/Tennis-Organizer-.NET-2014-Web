@@ -15,6 +15,10 @@
 	</li>
 	<li>
 		@Html.TextBoxFor(a => Model.Login)
+		@if (ViewData["LoginNotFound"] != null && (bool)ViewData["LoginNotFound"] == true)
+		{
+			@Html.Label("Podany login nie istnieje", new { @class = "errorLabel" })
+		}
 	</li>
 	<li>
 		@Html.EditorFor(a => Model.Password)
