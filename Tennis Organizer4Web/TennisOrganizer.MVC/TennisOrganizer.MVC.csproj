@@ -257,6 +257,7 @@
     <Content Include="Views\Main\Training.cshtml" />
     <Content Include="Views\Shared\WrongPage.cshtml" />
     <Content Include="Views\Main\AccountEdition.cshtml" />
+    <Content Include="Views\Main\ProfileEdition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,6 +68,27 @@ namespace TennisOrganizer.MVC.Models
 			AwayMatches = new HashSet<Duel>();
 			BirthDate = new DateTime(1, 1, 1);
 		}
+
+		public bool UpdatePlayer()
+		{
+			using(var db = new TennisOrganizerContext())
+			{
+				var p = db.Players.Find(this.AccountId);
+				if (p == null) return false;
+				
+				p.FirstName = this.FirstName;
+				p.LastName = this.LastName;
+				p.BirthDate = this.BirthDate;
+				p.City = this.City;
+				p.Email = this.Email;
+				p.PhoneNumber = this.PhoneNumber;
+				p.SkillLevel = this.SkillLevel;
+				p.ImagePath = this.ImagePath;
+				
+				db.SaveChanges();
+			}
+			return true;
+		}
 		public int GetWonMatchesCount()
 		{
 			int wins = 0;
@@ -202,6 +223,13 @@ namespace TennisOrganizer.MVC.Models
 			using (var db = new TennisOrganizerContext())
 			{
 				return db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
+			}
+		}
+		public static Player GetPlayerById(int id)
+		{
+			using (var db = new TennisOrganizerContext())
+			{
+				return db.Players.FirstOrDefault<Player>(p => p.Account.AccountId == id);
 			}
 		}
 

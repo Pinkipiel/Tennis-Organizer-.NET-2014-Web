@@ -88,11 +88,13 @@ namespace TennisOrganizer.MVC.Controllers
 		public ActionResult LogOff()
 		{
 			FormsAuthentication.SignOut();
+			Session.Clear();
 			return RedirectToAction("Index", "Home");
 		}
 		[Authorize]
 		public ActionResult AccountEdition()
 		{
+			if (Session["LoggedInPlayerId"] == null || Session["LoggedInPlayer"] == null) return RedirectToAction("Index", "Home");
 			AccountEditorData aed = new AccountEditorData() { Login = (string)Session["LoggedInPlayer"]};
 			return View(aed);
 		}
@@ -123,8 +125,29 @@ namespace TennisOrganizer.MVC.Controllers
 					}
 				}
 			}
-			
 			return View(model);
 		}
+		[Authorize]
+		public ActionResult ProfileEdition()
+		{
+			if (Session["LoggedInPlayerId"] == null || Session["LoggedInPlayer"] == null) return RedirectToAction("Index", "Home");
+			Player p = Player.GetPlayerById((int)Session["LoggedInPlayerId"]);
+			return View(p);
+		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult ProfileEdition(Player model)
+		{
+			if(ModelState.IsValid)
+			{
+				model.AccountId = (int)Session["LoggedInPlayerId"];
+				model.UpdatePlayer();
+
+			}
+			return View(model);
+		}
+
+
     }
 }
