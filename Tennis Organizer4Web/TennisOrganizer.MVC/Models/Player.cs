@@ -188,10 +188,27 @@ namespace TennisOrganizer.MVC.Models
 				return playersQuery.ToList<Player>();
 			}
 		}
+		public List<Player> GetOpponentsBy(DateTime gameTime, int ageFrom, int ageTo, float levelFrom, float levelTo, String city)
+		{
+			List<Player> players;
+
+			using (var db = new TennisOrganizerContext())
+			{
+				var playersQuery = from p in db.Players.AsEnumerable<Player>()
+								   where p.CanPlay(gameTime, db)
+								   && p.GetAge() >= ageFrom && p.GetAge() <= ageTo
+								   && p.SkillLevel >= levelFrom && p.SkillLevel <= levelTo
+								   && p.AccountId != this.AccountId
+								   && p.City == city
+								   //&& !(p is Trainer)
+								   select p;
+				players = playersQuery.ToList<Player>();
+			}
+			return players;
+		}
 		public bool CanPlay(Player player, DateTime date)
 		{
 			bool hasAnotherMatch;
-			//Context.Players.Attach(player);
 			hasAnotherMatch = (from m in player.Matches
 							   where m.DateOfPlay.Year == date.Year && m.DateOfPlay.Month == date.Month && m.DateOfPlay.Day == date.Day
 							   select m).Any<Duel>();
@@ -203,6 +220,51 @@ namespace TennisOrganizer.MVC.Models
 			{
 				return db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
 			}
+		}
+		private bool CanPlay(DateTime date, TennisOrganizerContext db)
+		{
+			Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+			bool hasAnotherMatch = (from m in player.Matches
+									where m.DateOfPlay.Year == date.Year && m.DateOfPlay.Month == date.Month && m.DateOfPlay.Day == date.Day
+									select m).Any<Duel>();
+			return !hasAnotherMatch;
+		}
+		public List<PlayerDuels> GetFinishedRatedDuels()
+		{
+			List<PlayerDuels> info = new List<PlayerDuels>();
+
+			using (var db = new TennisOrganizerContext())
+			{
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var duels = (from d in player.Matches
+							 where
+							 (d.HomePlayerId == player.AccountId
+							 && d.Accepted == true
+							 && d.Result != String.Empty
+							 && DateTime.Compare(d.DateOfPlay, DateTime.Now) < 0)
+							 //&& !(d.GuestPlayer is Trainer)
+							 select d);
+				foreach (var d in duels)
+					info.Add(new PlayerDuels(player, d));
+			}
+			return info;
+		}
+		public List<PlayerDuels> GetNotFinishedDuels()
+		{
+			List<PlayerDuels> info = new List<PlayerDuels>();
+
+			using (var db = new TennisOrganizerContext())
+			{
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var duels = (from d in player.Matches
+							 where
+							 (d.HomePlayerId == player.AccountId
+							 && DateTime.Compare(d.DateOfPlay, DateTime.Now) >= 0)
+							 select d);
+				foreach (var d in duels)
+					info.Add(new PlayerDuels(player, d));
+			}
+			return info;
 		}
 
 		public override string ToString()

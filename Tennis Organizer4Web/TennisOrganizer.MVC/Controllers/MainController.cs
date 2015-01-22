@@ -76,8 +76,16 @@ namespace TennisOrganizer.MVC.Controllers
 			if (cc.LevelTo == null)
 				cc.LevelTo = 100;
 
-			cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
+			if (cc.City.Length == 0)
+				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
+			else
+				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo, cc.City);
 			return View(cc);
+		}
+		[Authorize]
+		public ActionResult Profile()
+		{
+			return View();
 		}
 		[Authorize]
 		public ActionResult Training()
