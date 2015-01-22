@@ -99,7 +99,15 @@ namespace TennisOrganizer.MVC.Controllers
 			DateTime date = (DateTime)cc.Date;
 			//dateOfPlay.Hour = hour[0];
 			//dateOfPlay.Minute = hour[1];
-			DateTime dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
+			DateTime dateOfPlay;
+			try
+			{
+				dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
+			}
+			catch (IndexOutOfRangeException)
+			{
+				return View(cc);
+			}
 
 			using (var db = new TennisOrganizerContext())
 			{
