@@ -14,6 +14,8 @@ namespace TennisOrganizer.MVC.Models
 
 		public DbSet<Duel> Duels { get; set; }
 
+		public DbSet<Trainer> Trainers { get; set;}
+
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<Duel>()

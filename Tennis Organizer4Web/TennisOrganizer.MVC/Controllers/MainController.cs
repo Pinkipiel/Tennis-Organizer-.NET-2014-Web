@@ -94,17 +94,17 @@ namespace TennisOrganizer.MVC.Controllers
 			}
 
 			// else
-			Player opponent = new Player() {  AccountId = cc.OpponentNumber};
+			Player opponent = Player.GetPlayerById(cc.OpponentNumber);
 			String[] hour = cc.Hour.ToString().Split(':') ;
 			DateTime date = (DateTime)cc.Date;
-			//dateOfPlay.Hour = hour[0];
-			//dateOfPlay.Minute = hour[1];
 			DateTime dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
 
 			using (var db = new TennisOrganizerContext())
 			{
 				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = dateOfPlay });
 				db.SaveChanges();
+
+				Mailer.NotifyAboutChallenge(player.ToString(), opponent.Email, opponent.ToString());
 
 				TempData.Add("opponentName", Player.GetPlayerById(cc.OpponentNumber).ToString());
 				TempData.Add("dateOfPlay", cc.Date.ToShortDateString());
@@ -125,12 +125,69 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Profile()
 		{
+			if (Session["LoggedInPlayerId"] == null || (int)Session["LoggedInPlayerId"] <= 0)
+			{
+				String login = User.Identity.Name;
+				using (var db = new TennisOrganizerContext())
+				{
+					var LoggedInPlayer = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
+					if (LoggedInPlayer == null)
+					{
+						FormsAuthentication.SignOut();
+						return RedirectToAction("Index", "Home");
+					}
+					LoggedInPlayerId = LoggedInPlayer.AccountId;
+					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
+					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
+					Session.Add("ImagePath", (string)LoggedInPlayer.ImagePath);
+				}
+			}
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 			return View(player);
 		}
 		[Authorize]
 		public ActionResult Training()
 		{
+			TrainingCriteria cc = new TrainingCriteria();
+			cc.SuitableOpponents = Trainer.GetTrainersList();
+
+			return View(cc);
+		}
+		[Authorize]
+		[HttpPost]
+		public ActionResult Training(TrainingCriteria cc)
+		{
+			Player player = Player.GetPlayerByLogin(User.Identity.Name);
+
+
+			if (cc.OpponentNumber <= 0)
+			{
+				return View(cc);
+			}
+			Player opponent = Player.GetPlayerById(cc.OpponentNumber);
+			String[] hour = cc.Hour.ToString().Split(':');
+			DateTime date = (DateTime)cc.Date;
+			DateTime dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
+
+			using (var db = new TennisOrganizerContext())
+			{
+				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = dateOfPlay });
+				db.SaveChanges();
+
+				Mailer.NotifyAboutChallenge(player.ToString(), opponent.Email, opponent.ToString());
+
+				TempData.Add("opponentName", Player.GetPlayerById(cc.OpponentNumber).ToString());
+				TempData.Add("dateOfPlay", cc.Date.ToShortDateString());
+				TempData.Add("hourOfPlay", cc.Hour);
+
+				return RedirectToAction("TrainingSuccess", "Main");
+			}
+		}
+		public ActionResult TrainingSuccess()
+		{
+			ViewBag.opponentName = TempData["opponentName"];
+			ViewBag.dateOfPlay = TempData["dateOfPlay"];
+			ViewBag.hourOfPlay = TempData["hourOfPlay"];
 			return View();
 		}
 		public ActionResult LogOff()

@@ -69,6 +69,7 @@ if (@Model != null && @Model.SuitableOpponents != null)
 				<th>IMIĘ</th>
 				<th>NAZWISKO</th>
 				<th>WIEK</th>
+				<th>MIASTO</th>
 			</tr>
 				@foreach (var player in @Model.SuitableOpponents)
 				{
@@ -81,6 +82,7 @@ if (@Model != null && @Model.SuitableOpponents != null)
 						<td>@player.FirstName</td>
 						<td>@player.LastName</td>
 						<td>@player.GetAge()</td>
+						<td>@player.City</td>
 					</tr>
 				}
 			</table>
