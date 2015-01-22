@@ -77,7 +77,7 @@ namespace TennisOrganizer.MVC.Controllers
 			if (cc.LevelTo == null)
 				cc.LevelTo = 100;
 
-			if (cc.City.Length == 0)
+			if (cc.City == null || cc.City == String.Empty)
 				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
 			else
 				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo, cc.City);
