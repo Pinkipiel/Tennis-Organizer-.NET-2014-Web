@@ -21,33 +21,12 @@ namespace TennisOrganizer.MVC.Controllers
 		int LoggedInPlayerId = -1;
 
 		[Authorize]
-		public ActionResult MainTest()
-        {
-			if (Session["LoggedInPlayerId"] == null || (int)Session["LoggedInPlayerId"] <= 0)
-			{
-				String login = User.Identity.Name;
-				using (var db = new TennisOrganizerContext())
-				{
-					var LoggedInPlayer = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
-					if(LoggedInPlayer == null)
-					{
-						FormsAuthentication.SignOut();
-						return RedirectToAction("Index", "Home");
-					}
-					LoggedInPlayerId = LoggedInPlayer.AccountId;
-					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
-					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
-					Session.Add("ImagePath", (string)LoggedInPlayer.ImagePath);
-				}
-			}
-            return View();
-        }
-		[Authorize]
 		public ActionResult Ranking()
 		{
 			var stats = Player.GetPlayersStats().OrderBy(p => p.Position);
 			return View(stats);
 		}
+		
 		[Authorize]
 		public ActionResult Statistics()
 		{
@@ -66,6 +45,7 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			return View();
 		}
+		
 		[Authorize]
 		[HttpPost]
 		public ActionResult Challenge(ChallengeCriteria cc)
@@ -153,6 +133,7 @@ namespace TennisOrganizer.MVC.Controllers
 
 			return View(cc);
 		}
+		
 		[Authorize]
 		[HttpPost]
 		public ActionResult Training(TrainingCriteria cc)
@@ -183,6 +164,8 @@ namespace TennisOrganizer.MVC.Controllers
 				return RedirectToAction("TrainingSuccess", "Main");
 			}
 		}
+		
+
 		public ActionResult TrainingSuccess()
 		{
 			ViewBag.opponentName = TempData["opponentName"];
@@ -190,6 +173,7 @@ namespace TennisOrganizer.MVC.Controllers
 			ViewBag.hourOfPlay = TempData["hourOfPlay"];
 			return View();
 		}
+
 		public ActionResult LogOff()
 		{
 			FormsAuthentication.SignOut();
@@ -197,12 +181,14 @@ namespace TennisOrganizer.MVC.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 		[Authorize]
+	
 		public ActionResult AccountEdition()
 		{
 			if (Session["LoggedInPlayerId"] == null || Session["LoggedInPlayer"] == null) return RedirectToAction("Index", "Home");
 			AccountEditorData aed = new AccountEditorData() { Login = (string)Session["LoggedInPlayer"]};
 			return View(aed);
 		}
+		
 		[HttpPost]
 		[Authorize]
 		public ActionResult AccountEdition(AccountEditorData model)
@@ -232,6 +218,7 @@ namespace TennisOrganizer.MVC.Controllers
 			}
 			return View(model);
 		}
+		
 		[Authorize]
 		public ActionResult ProfileEdition()
 		{
