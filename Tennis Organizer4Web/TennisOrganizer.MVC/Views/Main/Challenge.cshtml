@@ -43,36 +43,32 @@
 			</td>
 		</tr>
 		<tr>
-			<td> <button type="submit">Wyzwij!</button> </td>
+			<td> <button type="submit">Szukaj gracza</button> </td>
 			<td></td>
 		</tr>
 	</table>
 }
-
-@if (@Model != null && @Model.SuitableOpponents != null)
-{
-		<table>
-			<tr>
-				<th>LP</th>
-				<th>IMIĘ</th>
-				<th>NAZWISKO</th>
-				<th>WIEK</th>
-			</tr>
-			@foreach (var player in @Model.SuitableOpponents)
-			{
+@using(Html.BeginForm("Challenge", "Main", FormMethod.Post)){
+	if (@Model != null && @Model.SuitableOpponents != null)
+	{
+			<table>
 				<tr>
-					<td>@player.FirstName</td>
-					<td>@player.LastName</td>
-					<td>@player.GetAge()</td>
+					<th>LP</th>
+					<th>IMIĘ</th>
+					<th>NAZWISKO</th>
+					<th>WIEK</th>
 				</tr>
-			}
-		</table>
+				@foreach (var player in @Model.SuitableOpponents)
+				{
+					<tr>
+						<td>@Html.RadioButton("playerListRadio", player.AccountId)</td>
+						<td>@player.FirstName</td>
+						<td>@player.LastName</td>
+						<td>@player.GetAge()</td>
+					</tr>
+				}
+			</table>
 		
-		using ( Html.BeginForm())
-		{
-			@Html.LabelFor(m => m.OpponentNumber)
-			@Html.TextBoxFor(m => m.OpponentNumber)
-			@Html.ValidationMessageFor(model => model.OpponentNumber)
-			<button type="submit">Wyzwji!</button>
-		}
+		<button type="submit">Wyzwji!</button>
+	}
 }

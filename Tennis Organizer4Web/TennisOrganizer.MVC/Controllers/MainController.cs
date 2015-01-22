@@ -72,6 +72,8 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 
+
+			
 			if (cc.OpponentNumber <= 0)
 			{
 				if (cc.AgeFrom == null)
