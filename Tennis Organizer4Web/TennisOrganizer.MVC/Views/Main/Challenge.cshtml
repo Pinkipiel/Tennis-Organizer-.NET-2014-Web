@@ -4,10 +4,8 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Challenge</h2>
-
 @using (Html.BeginForm()) {
-	<table>
+	<table class="statList">
 		<tr>
 			<td> @Html.LabelFor(m => m.Date) </td>
 			<td> 
@@ -30,7 +28,13 @@
 			<td> @Html.LabelFor(m => m.AgeFrom) </td>
 			<td> 
 				   @Html.TextBoxFor(m=>m.AgeFrom)
+			</td>
+		</tr>
+		<tr>
+			<td>
 				   @Html.LabelFor(m => m.AgeTo) 
+			</td>
+			<td> 
 				   @Html.TextBoxFor(m => m.AgeTo)
 			</td>
 		</tr>
@@ -38,7 +42,13 @@
 			<td> @Html.LabelFor(m => m.LevelFrom) </td>
 			<td>
 				@Html.TextBoxFor(m => m.LevelFrom)
+			</td>
+		</tr>
+		<tr>
+			<td>
 				@Html.LabelFor(m => m.LevelTo)
+			</td>
+			<td>
 				@Html.TextBoxFor(m => m.LevelTo)
 			</td>
 		</tr>
@@ -51,7 +61,7 @@
 
 @if (@Model != null && @Model.SuitableOpponents != null)
 {
-		<table>
+		<table class="disp1">
 			<tr>
 				<th>LP</th>
 				<th>IMIĘ</th>

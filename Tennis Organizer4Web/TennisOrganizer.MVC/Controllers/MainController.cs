@@ -45,7 +45,7 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Ranking()
 		{
-			var stats = Player.GetPlayersStats();
+			var stats = Player.GetPlayersStats().OrderBy(p => p.Position);
 			return View(stats);
 		}
 		[Authorize]
