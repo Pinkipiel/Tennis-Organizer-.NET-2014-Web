@@ -238,7 +238,7 @@ namespace TennisOrganizer.MVC.Models
 				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
 				var duels = (from d in player.Matches
 							 where
-							 (d.HomePlayerId == player.AccountId
+							 ((d.HomePlayerId == player.AccountId || d.GuestPlayerId == player.AccountId)
 							 && d.Accepted == true
 							 && d.Result != String.Empty
 							 && DateTime.Compare(d.DateOfPlay, DateTime.Now) < 0)
@@ -258,7 +258,7 @@ namespace TennisOrganizer.MVC.Models
 				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
 				var duels = (from d in player.Matches
 							 where
-							 (d.HomePlayerId == player.AccountId
+							 ((d.HomePlayerId == player.AccountId || d.GuestPlayerId == player.AccountId)
 							 && DateTime.Compare(d.DateOfPlay, DateTime.Now) >= 0)
 							 select d);
 				foreach (var d in duels)

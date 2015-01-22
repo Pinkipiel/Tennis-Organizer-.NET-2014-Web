@@ -10,14 +10,12 @@
 <table>
 	<tr>
 		<th>PRZECIWNIK</th>
-		<th>WYNIK</th>
 		<th>DATA</th>
 	</tr>
 	@foreach (var d in @Model.GetNotFinishedDuels())
 	{
 		<tr>
 			<td> @d.Opponent </td>
-			<td> @d.Score </td>
 			<td> @d.Date </td>
 		</tr>
 	}

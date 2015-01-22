@@ -21,7 +21,7 @@ namespace TennisOrganizer.MVC.Models
 			context.Players.Add(p3);
 			context.SaveChanges();
 
-			context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId = p1.AccountId, HomePlayerId = p2.AccountId, Result = "3:0", Seen = true, DateOfPlay = new DateTime(2015, 1, 15, 0, 0, 0) });
+			context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId = p1.AccountId, HomePlayerId = p2.AccountId, Result = "3:0", Seen = true, DateOfPlay = new DateTime(2015, 1, 30, 0, 0, 0) });
 			context.Duels.Add(new Duel() { Accepted = true, GuestPlayerId = p1.AccountId, HomePlayerId = p3.AccountId, Result = "1:3", Seen = true, DateOfPlay = new DateTime(2014, 12, 12, 0, 0, 0) });
 
 			context.SaveChanges();

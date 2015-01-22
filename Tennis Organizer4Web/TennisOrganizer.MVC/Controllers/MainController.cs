@@ -86,7 +86,8 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Profile()
 		{
-			return View();
+			Player player = Player.GetPlayerByLogin(User.Identity.Name);
+			return View(player);
 		}
 		[Authorize]
 		public ActionResult Training()
