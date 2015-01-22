@@ -1,6 +1,6 @@
 ﻿@model TennisOrganizer.MVC.Models.Player
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Profil";
 	Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
@@ -26,14 +26,12 @@
 <table class="disp1">
 	<tr>
 		<th>PRZECIWNIK</th>	
-		<th>WYNIK</th>
 		<th>DATA</th>
 	</tr>
-	@foreach (var d in @Model.GetFinishedRatedDuels())
+	@foreach (var d in @Model.GetFinished())
 	{
 		<tr>
 			<td> @d.Opponent </td>
-			<td> @d.Score </td>
 			<td> @d.Date </td>
 		</tr>
 	}

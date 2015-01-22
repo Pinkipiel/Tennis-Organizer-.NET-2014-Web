@@ -45,6 +45,7 @@
 		</div>
 		<div id="left-menu">
 			@if ((String)Session["ImagePath"] != null)
+	   
    {
 	   var imgSrc = @Url.Content("~/Content/Uploads/Thumbnails/")+(string)Session["ImagePath"];
 	   <a href="/Main/ProfileEdition/"> <img src="@imgSrc" height="140" width="140"/> </a>

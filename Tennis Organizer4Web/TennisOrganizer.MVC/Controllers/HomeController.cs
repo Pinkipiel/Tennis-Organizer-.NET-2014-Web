@@ -24,11 +24,18 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			return View();
 		}
-		public ViewResult RegisterSuccess()
+		public ActionResult RegisterSuccess()
 		{
-
+			if (TempData["ValidRegistration"] == null || (bool)TempData["ValidRegistration"] == false) return RedirectToAction("Index");
+			TempData["ValidRegistration"] = false;
 			ViewData.Add("RegisteredLogin", (String)TempData["RegisteredLogin"]);
-			Mailer.NotifyAboutRegistration((string)TempData["RegisteredName"], (string)TempData["RegisteredLogin"], (string)TempData["RegisteredEmail"]);
+			try
+			{
+				Mailer.NotifyAboutRegistration((string)TempData["RegisteredName"], (string)TempData["RegisteredLogin"], (string)TempData["RegisteredEmail"]);
+			}catch(FormatException e)
+			{
+				return View();
+			}
 			return View();
 		}
 		[HttpPost]
@@ -73,12 +80,17 @@ namespace TennisOrganizer.MVC.Controllers
 					else
 					{
 						Account acc = new Account { Login = rvm.Login, Password = rvm.Password };
+						rvm.Player.ImagePath = "default.png";
 						Player p = rvm.Player;
+						p.TopPosition = db.Players.Count<Player>() + 1;
+
 						Account.CreateAccount(acc, p);
 
 						TempData.Add("RegisteredLogin", rvm.Login);
 						TempData.Add("RegisteredName", rvm.Player.FirstName);
 						TempData.Add("RegisteredEmail", rvm.Player.Email);
+						if (!TempData.ContainsKey("ValidRegistration")) ;
+						TempData.Add("ValidRegistration", (bool) true);
 						return RedirectToAction("RegisterSuccess");
 					}
 				}

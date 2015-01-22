@@ -113,23 +113,21 @@ namespace TennisOrganizer.MVC.Tests
 		public void Test_UpdateAccount()
 		{
 			Account acc = null;
-			bool result1 = Account.UpdatePlayer(acc, "asd", p);
 			acc = new Account { Login = "Account_Test", Password = "asd" };
-			bool result2 = Account.UpdatePlayer(acc, "asd", p);
+			bool result2 = acc.UpdatePlayer("asd", p);
 			Account.CreateAccount(acc, p);
-			//bool result3 = Account.UpdatePlayer(acc, "dsa", "dsa", "Account_Test");
-			//bool result4 = Account.UpdatePlayer(acc, "asd", "dsa", "Account_Test2");
+			bool result3 = acc.UpdateAccount("dsa", "dsa", "Account_Test");
+			bool result4 = acc.UpdateAccount("asd", "dsa", "Account_Test2");
 			var query = db.Accounts.Where<Account>(a => a.Login == "Account_Test2").FirstOrDefault<Account>();
 			bool result5 = query == null ? false : true;
-			//if(result5 == true)
-			//{
-			//	Account.UpdatePlayer(acc, "dsa", "asd", "Account_Test2");
-			//}
-			Assert.IsFalse(result1);
+			if(result5 == true)
+			{
+				acc.UpdateAccount("dsa", "asd", "Account_Test2");
+			}
 			Assert.IsFalse(result2);
-			//Assert.IsFalse(result3);
-			//Assert.IsTrue(result4);
-			//Assert.IsTrue(result5);
+			Assert.IsFalse(result3);
+			Assert.IsTrue(result4);
+			Assert.IsTrue(result5);
 		}
 
 		[TestMethod]
@@ -137,24 +135,31 @@ namespace TennisOrganizer.MVC.Tests
 		{
 			Account acc = null;
 			Player p2 = null;
-			bool result1 = Account.UpdatePlayer(acc, "asd", p2);
 			acc = new Account() { Login = "Account_Test", Password = "asd", Player = p };
-			bool result2 = Account.UpdatePlayer(acc, "asd", p);
+			bool result2 = acc.UpdatePlayer( "asd", p);
 			Account.CreateAccount(acc, p);
-			bool result3 = Account.UpdatePlayer(acc, "dsa", p);
-			bool result4 = Account.UpdatePlayer(acc, "asd", p);
-			acc = db.Accounts.Where<Account>(a => a.Login == "Account_Test").FirstOrDefault<Account>();
-			bool result5 = db.Players.Where<Player>(pl => pl.AccountId == acc.AccountId).FirstOrDefault<Player>().FirstName == "AccountTest";
+			bool result3 = acc.UpdatePlayer( "dsa", p);
 
 
-			Assert.IsFalse(result1);
 			Assert.IsFalse(result2);
 			Assert.IsFalse(result3);
-			//Assert.IsTrue(result4);
-			//Assert.IsTrue(result5);
 		}
 
+		[TestMethod]
+		public void Test_CheckPassword()
+		{
+			Account acc = null;
+			acc = new Account() { Login = "Account_Test", Password = "asd", Player = p };
+			Account.CreateAccount(acc, p);
+			bool result1 = Account.CheckPassword(acc.Login, "asd");
+			bool result2 = Account.CheckPassword("Account_Test_fail", "asd");
+			bool result3 = Account.CheckPassword(acc.Login, "badPassword");
 
+			Assert.IsTrue(result1);
+			Assert.IsFalse(result2);
+			Assert.IsFalse(result3);
+
+		}
 
 	}
 }

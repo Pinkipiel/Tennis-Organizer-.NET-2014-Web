@@ -74,7 +74,7 @@ namespace TennisOrganizerTests
 			context.SaveChanges();
 		}
 
-		[TestMethod]
+	/*	[TestMethod]
 		public void GetAcceptedNotSeenDuelsTest()
 		{
 			Player p1;
@@ -94,8 +94,8 @@ namespace TennisOrganizerTests
 			List<Duel> expected = new List<Duel>();
 			expected.Add(Duel.GetDuelByID(d.DuelId));
 			CollectionAssert.AreEqual(expected.ToArray(), actual);
-		}
-		[TestMethod]
+		}*/
+	/*	[TestMethod]
 		public void GetFinishedNotRatedDuelsTest()
 		{
 			Player p1;
@@ -164,21 +164,7 @@ namespace TennisOrganizerTests
 			expected.Add(p1.AccountId);
 			CollectionAssert.AreEqual(expected, actual);
 		}
-		[TestMethod]
-		public void GetOpponentsByTest()
-		{
-			Player p1;
-			Player p2;
+		*/
 
-			p1 = context.Players.FirstOrDefault<Player>(p => p.AccountId == id1);
-			p2 = context.Players.FirstOrDefault<Player>(p => p.AccountId == id2);
-			context.SaveChanges();
-
-			List<Player> actual = new List<Player>();
-			actual.AddRange(p1.GetOpponentsBy(new DateTime(), 10, 100, 3.5f, 4.0f, "Testolandia"));
-			List<Player> expected = new List<Player>();
-			expected.Add(p2);
-			CollectionAssert.AreEqual(expected, actual);
-		}
 	}
 }

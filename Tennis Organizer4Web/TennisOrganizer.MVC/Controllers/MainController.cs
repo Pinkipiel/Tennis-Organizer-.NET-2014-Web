@@ -113,6 +113,23 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Profile()
 		{
+			if (Session["LoggedInPlayerId"] == null || (int)Session["LoggedInPlayerId"] <= 0)
+			{
+				String login = User.Identity.Name;
+				using (var db = new TennisOrganizerContext())
+				{
+					var LoggedInPlayer = db.Players.FirstOrDefault<Player>(p => p.Account.Login == login);
+					if (LoggedInPlayer == null)
+					{
+						FormsAuthentication.SignOut();
+						return RedirectToAction("Index", "Home");
+					}
+					LoggedInPlayerId = LoggedInPlayer.AccountId;
+					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
+					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
+					Session.Add("ImagePath", (string)LoggedInPlayer.ImagePath);
+				}
+			}
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 			return View(player);
 		}
@@ -145,9 +162,14 @@ namespace TennisOrganizer.MVC.Controllers
 			{
 				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = dateOfPlay });
 				db.SaveChanges();
+				try
+				{
+					Mailer.NotifyAboutChallenge(player.ToString(), opponent.Email, opponent.ToString());
+				}
+				catch(FormatException e)
+				{
 
-				Mailer.NotifyAboutChallenge(player.ToString(), opponent.Email, opponent.ToString());
-
+				}
 				TempData.Add("opponentName", Player.GetPlayerById(cc.OpponentNumber).ToString());
 				TempData.Add("dateOfPlay", cc.Date.ToShortDateString());
 				TempData.Add("hourOfPlay", cc.Hour);

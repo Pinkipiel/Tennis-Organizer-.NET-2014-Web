@@ -68,7 +68,7 @@ namespace TennisOrganizer.MVC.Models
 			AwayMatches = new HashSet<Duel>();
 			BirthDate = new DateTime(1, 1, 1);
 		}
-
+		
 		public bool UpdatePlayer()
 		{
 			using(var db = new TennisOrganizerContext())
@@ -131,8 +131,8 @@ namespace TennisOrganizer.MVC.Models
 			using (var db = new TennisOrganizerContext())
 			{
 				var ranking = (from p in db.Players
-							   orderby p.SkillLevel descending
 							   where p.AccountId != AccountId //&& !(p is Trainer)
+							   orderby p.SkillLevel descending
 							   select p);
 				foreach (Player p in ranking)
 				{
@@ -361,7 +361,23 @@ namespace TennisOrganizer.MVC.Models
 			}
 			return list;
 		}
+		public List<PlayerDuels> GetFinished()
+		{
+			List<PlayerDuels> info = new List<PlayerDuels>();
 
+			using (var db = new TennisOrganizerContext())
+			{
+				Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var duels = (from d in player.Matches
+							 where
+							 ((d.HomePlayerId == player.AccountId || d.GuestPlayerId == player.AccountId)
+							 && DateTime.Compare(d.DateOfPlay, DateTime.Now) < 0)
+							 select d);
+				foreach (var d in duels)
+					info.Add(new PlayerDuels(player, d));
+			}
+			return info;
+		}
 		public Player GetOpponentBy(int duelID)
 		{
 			Player player;

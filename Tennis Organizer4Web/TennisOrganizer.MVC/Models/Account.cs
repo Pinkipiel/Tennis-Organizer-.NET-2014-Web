@@ -84,16 +84,16 @@ namespace TennisOrganizer.MVC.Models
 			}
 		}
 
-		public static bool UpdatePlayer(Account acc, String Password, Player p)
+		public bool UpdatePlayer(String Password, Player p)
 		{
-			if (acc == null || p == null) return false;
+			if (this == null || p == null) return false;
 			using (var db = new TennisOrganizerContext())
 			{
-				var query = db.Accounts.FirstOrDefault<Account>(a => a.AccountId == acc.AccountId);
+				var query = db.Accounts.FirstOrDefault<Account>(a => a.AccountId == this.AccountId);
 				if (query == null || query.Password != Password) return false;
 				else
 				{
-					var updated = db.Players.FirstOrDefault<Player>(player => player.AccountId == acc.AccountId);
+					var updated = db.Players.FirstOrDefault<Player>(player => player.AccountId == this.AccountId);
 					if (updated == null) return false;
 					updated.FirstName = p.FirstName;
 					updated.LastName = p.LastName;
