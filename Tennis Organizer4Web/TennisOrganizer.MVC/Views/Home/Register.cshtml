@@ -69,13 +69,13 @@
 	</li>
 	<li>
 		@Html.TextBoxFor(model => model.Player.BirthDate, new { @class = "jquery_datepicker" ,@placeholder = "RRRR-MM-DD"})
-		
+		@Html.ValidationMessageFor(model => model.Player.BirthDate)
 	</li>
 	<li>
 		@Html.LabelFor(model => model.Player.Email)
 	</li>
 	<li>
-		@Html.TextBoxFor(model => model.Player.Email, new { @class = "emailpicker" })
+		@Html.TextBoxFor(model => model.Player.Email, new { @class = "validate_email" , @placeholder = "np. jan.kowalski@email.com"})
 		@Html.ValidationMessageFor(model => model.Player.Email)
 	</li>
 	<li>

@@ -3,24 +3,30 @@
     ViewBag.Title = "Challenge";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+<style>
+	form{
+		width:48%;
+	}
+</style>
 @using (Html.BeginForm()) {
 	
 	@Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 	<fieldset>
+		<legend>Dane pojedynku</legend>
+
 		<div class="editor-label">
 			@Html.LabelFor(m => m.Date)
 		</div>
 		<div class="editor-field">
-			@Html.TextBoxFor(m => m.Date)
-			@Html.ValidationMessageFor(model => model.Date)
+			@Html.TextBoxFor(m => m.Date, new { @class = "jquery_datepicker", @placeholder = "RRRR-MM-DD"})
+			@Html.ValidationMessageFor(m => m.Date)
 		</div>
 		<div class="editor-label">
 			@Html.LabelFor(m => m.Hour)
 		</div>
 		<div class="editor-field">
-			@Html.TextBoxFor(m => m.Hour)
+			@Html.TextBoxFor(m => m.Hour, new { @class = "validate_hour", @placeholder = "GG-MM" })
 			@Html.ValidationMessageFor(model => model.Hour)
 		</div>
 		<div class="editor-label">
@@ -59,8 +65,8 @@
 }
 @using(Html.BeginForm("Challenge", "Main", FormMethod.Post)){
 
-if (@Model != null && @Model.SuitableOpponents != null)
-{
+	if (@Model != null && @Model.SuitableOpponents != null)
+	{
 	
 		<table class="disp1">
 			<tr>
@@ -85,7 +91,7 @@ if (@Model != null && @Model.SuitableOpponents != null)
 					</tr>
 				}
 			</table>
-}	
+
 		<button type="submit">Wyzwji!</button>
-	
+	}
 }

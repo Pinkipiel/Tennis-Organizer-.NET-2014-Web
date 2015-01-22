@@ -1,3 +1,0 @@
-﻿DELETE FROM Duels
-DELETE FROM Players
-DELETE FROM Accounts

@@ -33,6 +33,7 @@ namespace TennisOrganizer.MVC.Models
 		public String PhoneNumber { get; set; }
 
 		[Required(ErrorMessage = "Pole Wymagane")]
+		[Display(Name="Adres Email")]
 		[DataType(DataType.EmailAddress)]
 		public String Email { get; set; }
 
@@ -199,7 +200,7 @@ namespace TennisOrganizer.MVC.Models
 			{
 				Player player = Context.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
 				var playersQuery = from p in Context.Players.AsEnumerable<Player>()
-								   where CanPlay(player, gameTime)
+								   where CanPlay(p, gameTime)
 								   && p.GetAge() >= ageFrom && p.GetAge() <= ageTo
 								   && p.SkillLevel >= levelFrom && p.SkillLevel <= levelTo
 								   && p.AccountId != player.AccountId
@@ -213,17 +214,19 @@ namespace TennisOrganizer.MVC.Models
 		{
 			List<Player> players;
 
-			using (var db = new TennisOrganizerContext())
+			using (var Context = new TennisOrganizerContext())
 			{
-				var playersQuery = from p in db.Players.AsEnumerable<Player>()
-								   where p.CanPlay(gameTime, db)
+				Player player = Context.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);
+				var playersQuery = from p in Context.Players.AsEnumerable<Player>()
+								   where CanPlay(p, gameTime)
 								   && p.GetAge() >= ageFrom && p.GetAge() <= ageTo
 								   && p.SkillLevel >= levelFrom && p.SkillLevel <= levelTo
-								   && p.AccountId != this.AccountId
-								   && p.City == city
-								   //&& !(p is Trainer)
+								   && p.AccountId != player.AccountId
+								   && p.City.ToLower() == city.ToLower()
+								   && !(p is Trainer)
 								   select p;
-				players = playersQuery.ToList<Player>();
+
+				return playersQuery.ToList<Player>();
 			}
 			return players;
 		}

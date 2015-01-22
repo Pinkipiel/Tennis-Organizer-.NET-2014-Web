@@ -19,7 +19,11 @@ namespace TennisOrganizer.MVC.Controllers
         // GET: /Main/
 		//TennisOrganizerContext ctx = new TennisOrganizerContext();
 		int LoggedInPlayerId = -1;
+		public MainController()
+		{
+			//var player = Player.GetPlayerByLogin(User.Identity.Name);
 
+		}
 		[Authorize]
 		public ActionResult Ranking()
 		{
