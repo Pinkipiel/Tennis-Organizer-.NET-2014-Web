@@ -43,9 +43,9 @@
 			
 		</div>
 		<div id="left-menu">
-			@if ((String)Session["Player"] != null)
+			@if ((String)Session["ImagePath"] != null)
    {
-	   var imgSrc = @Url.Content("~/Content/Uploads/Thumbnails/")+(string)Session["Player"];
+	   var imgSrc = @Url.Content("~/Content/Uploads/Thumbnails/")+(string)Session["ImagePath"];
 	   <img src="@imgSrc" />
    }
 		</div>

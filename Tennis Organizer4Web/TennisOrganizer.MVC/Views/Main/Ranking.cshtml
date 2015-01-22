@@ -5,7 +5,7 @@
 	Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<table>
+<table class="disp1">
 	<tr>
 		<th>POZYCJA</th>
 		<th>IMIĘ</th>
@@ -17,7 +17,7 @@
 	</tr>
 	@foreach (var stat in Model)
 	{
-		<tr>
+			<tr>
 			<td>@stat.Position</td>
 			<td>@stat.FirstName</td>
 			<td>@stat.LastName</td>

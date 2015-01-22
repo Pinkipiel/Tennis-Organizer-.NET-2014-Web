@@ -4,10 +4,8 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Challenge</h2>
-
 @using (Html.BeginForm()) {
-	<table>
+	<table class="statList">
 		<tr>
 			<td> @Html.LabelFor(m => m.Date) </td>
 			<td> 
@@ -30,7 +28,13 @@
 			<td> @Html.LabelFor(m => m.AgeFrom) </td>
 			<td> 
 				   @Html.TextBoxFor(m=>m.AgeFrom)
+			</td>
+		</tr>
+		<tr>
+			<td>
 				   @Html.LabelFor(m => m.AgeTo) 
+			</td>
+			<td> 
 				   @Html.TextBoxFor(m => m.AgeTo)
 			</td>
 		</tr>
@@ -38,7 +42,13 @@
 			<td> @Html.LabelFor(m => m.LevelFrom) </td>
 			<td>
 				@Html.TextBoxFor(m => m.LevelFrom)
+			</td>
+		</tr>
+		<tr>
+			<td>
 				@Html.LabelFor(m => m.LevelTo)
+			</td>
+			<td>
 				@Html.TextBoxFor(m => m.LevelTo)
 			</td>
 		</tr>
@@ -49,26 +59,32 @@
 	</table>
 }
 @using(Html.BeginForm("Challenge", "Main", FormMethod.Post)){
-	if (@Model != null && @Model.SuitableOpponents != null)
-	{
-			<table>
-				<tr>
-					<th>LP</th>
-					<th>IMIĘ</th>
-					<th>NAZWISKO</th>
-					<th>WIEK</th>
-				</tr>
+
+if (@Model != null && @Model.SuitableOpponents != null)
+{
+	
+		<table class="disp1">
+			<tr>
+				<th>LP</th>
+				<th>IMIĘ</th>
+				<th>NAZWISKO</th>
+				<th>WIEK</th>
+			</tr>
 				@foreach (var player in @Model.SuitableOpponents)
 				{
 					<tr>
-						<td>@Html.RadioButton("playerListRadio", player.AccountId)</td>
+						<td>
+							@Html.HiddenFor(m => @Model.Date) 
+							@Html.HiddenFor(m => @Model.Hour)
+							@Html.RadioButtonFor(m => m.OpponentNumber, player.AccountId) 
+						</td>
 						<td>@player.FirstName</td>
 						<td>@player.LastName</td>
 						<td>@player.GetAge()</td>
 					</tr>
 				}
 			</table>
-		
+}	
 		<button type="submit">Wyzwji!</button>
-	}
+	
 }

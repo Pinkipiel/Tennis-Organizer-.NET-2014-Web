@@ -260,6 +260,7 @@
     <Content Include="Views\Main\Profile.cshtml" />
     <Content Include="Views\Main\AccountEdition.cshtml" />
     <Content Include="Views\Main\ProfileEdition.cshtml" />
+    <Content Include="Views\Main\ChallengeSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

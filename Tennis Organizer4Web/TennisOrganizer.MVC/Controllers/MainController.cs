@@ -37,7 +37,7 @@ namespace TennisOrganizer.MVC.Controllers
 					LoggedInPlayerId = LoggedInPlayer.AccountId;
 					Session.Add("LoggedInPlayerId", (int)LoggedInPlayerId);
 					Session.Add("LoggedInPlayer", (string)User.Identity.Name);
-					Session.Add("Player", (string)LoggedInPlayer.ImagePath);
+					Session.Add("ImagePath", (string)LoggedInPlayer.ImagePath);
 				}
 			}
             return View();
@@ -45,7 +45,7 @@ namespace TennisOrganizer.MVC.Controllers
 		[Authorize]
 		public ActionResult Ranking()
 		{
-			var stats = Player.GetPlayersStats();
+			var stats = Player.GetPlayersStats().OrderBy(p => p.Position);
 			return View(stats);
 		}
 		[Authorize]
@@ -72,7 +72,6 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 
-
 			
 			if (cc.OpponentNumber <= 0)
 			{
@@ -89,18 +88,39 @@ namespace TennisOrganizer.MVC.Controllers
 					cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
 				else
 					cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo, cc.City);
+
+				
 				return View(cc);
 			}
 
 			// else
-			Player opponent = new Player();
+			Player opponent = new Player() {  AccountId = cc.OpponentNumber};
+			String[] hour = cc.Hour.ToString().Split(':') ;
+			DateTime date = (DateTime)cc.Date;
+			//dateOfPlay.Hour = hour[0];
+			//dateOfPlay.Minute = hour[1];
+			DateTime dateOfPlay = new DateTime(date.Date.Year, date.Date.Month, date.Date.Day, int.Parse(hour[0]), int.Parse(hour[1]), 0);
 
 			using (var db = new TennisOrganizerContext())
 			{
-				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = new DateTime(2015, 1, 30, 0, 0, 0) });
+				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = dateOfPlay });
 				db.SaveChanges();
-				return View(cc);
+
+				TempData.Add("opponentName", Player.GetPlayerById(cc.OpponentNumber).ToString());
+				TempData.Add("dateOfPlay", cc.Date.ToShortDateString());
+				TempData.Add("hourOfPlay", cc.Hour);
+
+				return RedirectToAction("ChallengeSuccess", "Main");
 			}
+		}
+
+		[Authorize]
+		public ActionResult ChallengeSuccess()
+		{
+			ViewBag.opponentName = TempData["opponentName"];
+			ViewBag.dateOfPlay = TempData["dateOfPlay"];
+			ViewBag.hourOfPlay = TempData["hourOfPlay"];
+			return View();
 		}
 		[Authorize]
 		public ActionResult Profile()
