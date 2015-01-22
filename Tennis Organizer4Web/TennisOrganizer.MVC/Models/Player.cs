@@ -248,6 +248,7 @@ namespace TennisOrganizer.MVC.Models
 			{
 				return db.Players.FirstOrDefault<Player>(p => p.Account.AccountId == id);
 			}
+		}
 		private bool CanPlay(DateTime date, TennisOrganizerContext db)
 		{
 			Player player = db.Players.FirstOrDefault<Player>(p => p.AccountId == AccountId);

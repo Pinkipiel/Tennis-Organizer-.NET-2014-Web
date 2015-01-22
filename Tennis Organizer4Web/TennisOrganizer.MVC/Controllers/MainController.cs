@@ -68,20 +68,33 @@ namespace TennisOrganizer.MVC.Controllers
 		{
 			Player player = Player.GetPlayerByLogin(User.Identity.Name);
 
-			if (cc.AgeFrom == null)
-				cc.AgeFrom = 0;
-			if (cc.AgeTo == null)
-				cc.AgeTo = 200;
-			if (cc.LevelFrom == null)
-				cc.LevelFrom = 0;
-			if (cc.LevelTo == null)
-				cc.LevelTo = 100;
+			if (cc.OpponentNumber <= 0)
+			{
+				if (cc.AgeFrom == null)
+					cc.AgeFrom = 0;
+				if (cc.AgeTo == null)
+					cc.AgeTo = 200;
+				if (cc.LevelFrom == null)
+					cc.LevelFrom = 0;
+				if (cc.LevelTo == null)
+					cc.LevelTo = 100;
 
-			if (cc.City == null || cc.City == String.Empty)
-				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
-			else
-				cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo, cc.City);
-			return View(cc);
+				if (cc.City == null || cc.City == String.Empty)
+					cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo);
+				else
+					cc.SuitableOpponents = player.GetOpponentsBy(cc.Date, (int)cc.AgeFrom, (int)cc.AgeTo, (float)cc.LevelFrom, (float)cc.LevelTo, cc.City);
+				return View(cc);
+			}
+
+			// else
+			Player opponent = new Player();
+
+			using (var db = new TennisOrganizerContext())
+			{
+				db.Duels.Add(new Duel() { Accepted = false, GuestPlayerId = opponent.AccountId, HomePlayerId = player.AccountId, Seen = false, DateOfPlay = new DateTime(2015, 1, 30, 0, 0, 0) });
+				db.SaveChanges();
+				return View(cc);
+			}
 		}
 		[Authorize]
 		public ActionResult Profile()

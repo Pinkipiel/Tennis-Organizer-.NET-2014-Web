@@ -27,5 +27,9 @@ namespace TennisOrganizer.MVC.ViewModels
 		[DisplayName("do")]
 		public float? LevelTo { get; set; }
 		public List<Player> SuitableOpponents { get; set; }
+		[Required(ErrorMessage = "Wprowadź numer gracza!")]
+		[Range(1, int.MaxValue, ErrorMessage = "Wprowadź liczbę dodatnią")]
+		[DisplayName("Wybierz numer gracza")]
+		public int OpponentNumber { get; set; }
 	}
 }
