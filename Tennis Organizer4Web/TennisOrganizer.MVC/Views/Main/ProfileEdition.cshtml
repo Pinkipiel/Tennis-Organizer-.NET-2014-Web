@@ -7,7 +7,7 @@
 
 <h2>Edycja Profilu</h2>
 
-@using (Html.BeginForm("ProfileEdition", "Main", FormMethod.Post)) {
+@using (Html.BeginForm("ProfileEdition", "Main", FormMethod.Post, new { enctype = "multipart/form-data"})) {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -71,6 +71,9 @@
             @Html.EditorFor(model => model.City)
             @Html.ValidationMessageFor(model => model.City)
         </div>
+		<div class="editor-label">
+			<input type="file" name="file" />
+		</div>
 
         <p>
             <input type="submit" value="Save" />

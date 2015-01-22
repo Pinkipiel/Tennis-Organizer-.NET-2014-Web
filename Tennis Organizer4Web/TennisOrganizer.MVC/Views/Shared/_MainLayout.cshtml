@@ -42,12 +42,17 @@
 			@Html.ActionLink("Ranking", "Ranking", "Main", null, new { @class = "top-panel-button" })
 			
 		</div>
-			<div id="left-menu">
-				menu
-			</div>
-			<div id="content">
-				@RenderBody()
-			</div>
+		<div id="left-menu">
+			@if ((String)Session["Player"] != null)
+   {
+	   var imgSrc = @Url.Content("~/Content/Uploads/Thumbnails/")+(string)Session["Player"];
+	   <img src="@imgSrc" />
+   }
+		</div>
+		<div id="content">
+			@RenderBody()
+		</div>
+
 	</div>
 	<div id="authors">
 		Tennis Organizer by Kacper Sarnacki and Piotr Wcisło
