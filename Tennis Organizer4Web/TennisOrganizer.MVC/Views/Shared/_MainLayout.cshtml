@@ -19,7 +19,7 @@
 <body>
 	<header>
 		<div class="center">
-			<a class="logo" href="/Main/MainTest">Tennis Organizer</a>
+			<a class="logo" href="/Main/Profile">Tennis Organizer</a>
 			<div id="rightNavBar">
 				@Html.ActionLink("Profil", "ProfileEdition", "Main", null) |
 				@Html.ActionLink("Konto", "AccountEdition", "Main", null) |
@@ -47,7 +47,7 @@
 			@if ((String)Session["ImagePath"] != null)
    {
 	   var imgSrc = @Url.Content("~/Content/Uploads/Thumbnails/")+(string)Session["ImagePath"];
-	   <img src="@imgSrc" />
+	   <a href="/Main/ProfileEdition/"> <img src="@imgSrc" height="140" width="140"/> </a>
    }
 		</div>
 		<div id="content">

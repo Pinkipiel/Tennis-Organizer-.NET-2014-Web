@@ -203,7 +203,7 @@ namespace TennisOrganizer.MVC.Models
 								   && p.GetAge() >= ageFrom && p.GetAge() <= ageTo
 								   && p.SkillLevel >= levelFrom && p.SkillLevel <= levelTo
 								   && p.AccountId != player.AccountId
-								   //&& !(p is Trainer)
+								   && !(p is Trainer)
 								   select p;
 
 				return playersQuery.ToList<Player>();

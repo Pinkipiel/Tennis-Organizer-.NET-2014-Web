@@ -270,7 +270,8 @@ namespace TennisOrganizer.MVC.Controllers
 					string path = FilesPath + DirSeparator + fileName + fileExt; 
 					file.SaveAs(Path.GetFullPath(path));
 					model.ImagePath = fileName + fileExt;
-
+					model.UpdatePlayer();
+					Session.Add("ImagePath", model.ImagePath);
 					//zapisz thumbnail:
 
 					string thumbnailDirectory = String.Format(@"{0}{1}{2}", FilesPath, DirSeparator, "Thumbnails");
