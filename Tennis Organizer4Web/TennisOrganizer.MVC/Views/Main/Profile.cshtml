@@ -1,0 +1,39 @@
+﻿@model TennisOrganizer.MVC.Models.Player
+@{
+    ViewBag.Title = "Profile";
+	Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Profile</h2>
+
+@*planned*@
+<table>
+	<tr>
+		<th>PRZECIWNIK</th>
+		<th>DATA</th>
+	</tr>
+	@foreach (var d in @Model.GetNotFinishedDuels())
+	{
+		<tr>
+			<td> @d.Opponent </td>
+			<td> @d.Date </td>
+		</tr>
+	}
+</table>
+
+@*finished*@
+<table>
+	<tr>
+		<th>PRZECIWNIK</th>
+		<th>WYNIK</th>
+		<th>DATA</th>
+	</tr>
+	@foreach (var d in @Model.GetFinishedRatedDuels())
+	{
+		<tr>
+			<td> @d.Opponent </td>
+			<td> @d.Score </td>
+			<td> @d.Date </td>
+		</tr>
+	}
+</table>
